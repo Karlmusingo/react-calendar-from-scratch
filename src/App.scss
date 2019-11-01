@@ -1,0 +1,22 @@
+* {
+    box-sizing: border-box;
+}
+
+ul {
+    list-style-type: none;
+}
+
+body {
+    font-family: Verdana, sans-serif;
+    background: #f9f9f9;
+}
+
+#calendar {
+    max-width: 600px;
+    min-width: 300px;
+}
+
+.navigation {
+    color: #2C7CF1 !important;
+    cursor: pointer;
+}
