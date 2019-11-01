@@ -1,11 +1,11 @@
-#month-calendar {
+#day-calendar {
     background: #ffff;
     padding: 20px;
     .calendar-header {
-        display: flex;
-        // grid-template-columns: 1fr;
-        // grid-template-rows: 1fr;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        justify-items: center;
         margin-bottom: 20px;
     }
     .month {
@@ -33,31 +33,61 @@
         // text-transform: uppercase;
         letter-spacing: 3px;
     }
-    #weekdays {
+    .calendar-body {
+        width: 100%;
+        overflow: auto;
+    }
+    .calendar-body::-webkit-scrollbar {
+        // &:horizontal {
+            // display: block;
+            height: 7px;
+            box-sizing: border-box;
+            border: 1px solid #E5E8E9;
+            border-radius: 5.5px;
+            background-color: #E5E8E9;
+        
+        &:vertical{
+            width: 0px;
+        }
+    }
+    .calendar-body::-webkit-scrollbar-thumb {
+        &:horizontal{
+            height: 6px;
+            border-radius: 5.5px;
+            background-color: #2C7CF1;
+        }
+    }
+
+    #day-time {
         margin: 0;
         padding: 0;
         border-bottom: 1px dashed #E3E6E7;
         // border-left: 1px solid #E3E6E7;
     }
-    #weekdays li {
+    #day-time li {
         color: #838D93;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 15px;
+        letter-spacing: 2px;
         padding: 8px 0 16px 8px;
         border-left: 1px solid #E3E6E7;
+        overflow: auto;
         // text-align: center;
     }
     #days {
         padding: 0;
         margin: 0;
-        overflow: auto;
     }
     #days li {
         list-style-type: none;
         // text-align: center;
-        text-transform: uppercase;
+        // text-transform: uppercase;
         font-size: 12px;
         font-weight: 500;
         color: #838D93;
-        padding: 15px;
+        // padding: 15px;
+        height: 19px;
         border-left: 1px solid #E3E6E7;
         border-bottom: 1px dashed #E3E6E7;
     }
@@ -65,7 +95,16 @@
         background: #1abc9c;
         color: white !important;
     }
-    
+
+    .event {
+        margin: 0.2rem 0rem;
+        border-radius: 5px;
+        background-color: rgba(44,124,241,0.11);
+        padding: 5px 10px;
+        color: #333A3F;
+        position: absolute;
+    }
+
     /* Add media queries for smaller screens */
     // @media screen and (max-width: 720px) {
     //     .weekdays li,
@@ -89,16 +128,17 @@
     //     }
     // }
     #days,
-    #weekdays {
+    #day-time {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: repeat(24, [col] 150px);
         grid-template-rows: 1fr;
+        position: relative;
     }
-    @media all and (-ms-high-contrast: none) {
-        #days {
-            display: -ms-grid;
-            -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-            -ms-grid-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-        }
-    }
+    // @media all and (-ms-high-contrast: none) {
+    //     #days {
+    //         display: -ms-grid;
+    //         -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    //         -ms-grid-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    //     }
+    // }
 }

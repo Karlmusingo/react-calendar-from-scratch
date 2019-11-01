@@ -3,8 +3,7 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 import './WeekCalendar.scss';
-import Week from './Week';
-import { weekdays, months } from '../utils/constants';
+import { weekdays, months, cellHeight } from '../utils/constants';
 
 const today = new Date();
 const monthDefault = today.getMonth();
@@ -23,9 +22,6 @@ const WeekCalendar = () => {
   const [lastDayOfTheWeek, setLastDayOfTheWeek] = useState(new Date(year, month, firstDayOfTheWeekDefault + 6).getDate());
 
   const numberOfDays = new Date(year, month + 1, 0).getDate();
-  // week class
-  // console.log('week',moment().startOf('week') );
-  // console.log('week',moment().startOf('week').add(1, 'week') );
 
   const next = () => {
     // const numberOfThisDays = new Date(year, month + 1, 0).getDate();
@@ -95,6 +91,28 @@ const WeekCalendar = () => {
     setyear(newYear);
   };
 
+  const events = [{
+    title: 'the title...',
+    startTime: new Date(moment().add(0, "day")),
+    endTime: new Date(moment().add(0, "day").add(2, "hour")),
+  },{
+    title: 'the title. title..',
+    startTime: new Date(moment().add(1, "day")),
+    endTime: new Date(moment().add(1, "day").add(1, "hour")),
+  },{
+    title: 'the title...',
+    startTime: new Date(moment().add(0, "day")),
+    endTime: new Date(moment().add(0, "day").add(2, "hour")),
+  },{
+    title: 'the title...',
+    startTime: new Date(moment().add(1, "day")),
+    endTime: new Date(moment().add(1, "day").add(1, "hour")),
+  },{
+    title: 'the title...',
+    startTime: new Date(moment().add(3, "day")),
+    endTime: new Date(moment().add(3, "day").add(3, "hour")),
+  }];
+
   return (
     <div id="week-calendar">
       <div className="calendar-header">
@@ -127,8 +145,23 @@ const WeekCalendar = () => {
       </ul>
 
       <ul id="days">
-        {[...(Array(168))].map((day) => (
-          <li key={Math.random()}>{}</li>
+        {[...(Array(168))].map((value, index) =>  (
+          <li key={Math.random()} style={{}}>{
+            events.map((event) => {
+              if((index % 7) === event.startTime.getDay()) {
+                if(event.startTime.getHours() === Math.trunc(index / 7)) {
+                  const minutPush = event.startTime.getMinutes() * (cellHeight / 60);
+                  const duration = ((event.endTime.getTime() - event.startTime.getTime()) / 60000) * (cellHeight / 60); // duration in px
+                  return (
+                    <div className="event" key={Math.random()} style={{ marginTop: `${minutPush}px`, height: `${duration}px` }}>
+                      <DisplayText text={event.title} />
+                    </div>
+                  )
+                }
+              }
+              return null;
+            })
+          }</li>
         ))}
       </ul>
     </div>
