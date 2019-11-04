@@ -1,21 +1,18 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
-import moment from 'moment';
+import PropTypes from 'prop-types';
 import './WeekCalendar.scss';
 import { weekdays, months, cellHeight } from '../utils/constants';
+import Event from './Event';
+import DisplayText from './DisplayText';
 
 const today = new Date();
 const monthDefault = today.getMonth();
 const yearDefault = today.getFullYear();
 const firstDayOfTheWeekDefault = today.getDate() - today.getDay();
 
-// eslint-disable-next-line react/prop-types
-const DisplayText = ({ text }) => (
-  <span>{text}</span>
-);
-
-const WeekCalendar = () => {
+const WeekCalendar = ({events = []}) => {
   const [month, setMonth] = useState(monthDefault);
   const [year, setyear] = useState(yearDefault);
   const [firstDayOfTheWeek, setFirstDayOfTheWeek] = useState(firstDayOfTheWeekDefault);
@@ -24,7 +21,6 @@ const WeekCalendar = () => {
   const numberOfDays = new Date(year, month + 1, 0).getDate();
 
   const next = () => {
-    // const numberOfThisDays = new Date(year, month + 1, 0).getDate();
     if ((firstDayOfTheWeek + 7) > numberOfDays) {
       const newYear = month === 11 ? year + 1 : year;
       const newMonth = (month + 1) % 12;
@@ -58,12 +54,6 @@ const WeekCalendar = () => {
     const newYear = month === 11 ? year + 1 : year;
     const newMonth = (month + 1) % 12;
 
-    // get the first week of the month
-
-    // setFirstDayOfTheWeek(newYear, newMonth, )
-
-    // end
-
     setMonth(newMonth);
     setyear(newYear);
   };
@@ -74,14 +64,12 @@ const WeekCalendar = () => {
 
     // get the first week of the month
     const firstDay = new Date(newYear, newMonth, 1); // first day of the month
-    // const firstDayOfTheFirstWeek = firstDay.getDay();
+
     const newFirstDayOfTheWeek = new Date(newYear, newMonth, 1 - firstDay.getDay()).getDate();
     const newLastDayOfTheWeek = new Date(
       newYear,
       newMonth, 
       new Date(newYear, newMonth - 1, newFirstDayOfTheWeek + 6).getDate()).getDate();
-    console.log(newYear, newMonth, newFirstDayOfTheWeek, newLastDayOfTheWeek)
-    console.log(year, month, newFirstDayOfTheWeek, newLastDayOfTheWeek)
     
     setFirstDayOfTheWeek(newFirstDayOfTheWeek);
     setLastDayOfTheWeek(newLastDayOfTheWeek);
@@ -91,35 +79,13 @@ const WeekCalendar = () => {
     setyear(newYear);
   };
 
-  const events = [{
-    title: 'the title...',
-    startTime: new Date(moment().add(0, "day")),
-    endTime: new Date(moment().add(0, "day").add(2, "hour")),
-  },{
-    title: 'the title. title..',
-    startTime: new Date(moment().add(1, "day")),
-    endTime: new Date(moment().add(1, "day").add(1, "hour")),
-  },{
-    title: 'the title...',
-    startTime: new Date(moment().add(0, "day")),
-    endTime: new Date(moment().add(0, "day").add(2, "hour")),
-  },{
-    title: 'the title...',
-    startTime: new Date(moment().add(1, "day")),
-    endTime: new Date(moment().add(1, "day").add(1, "hour")),
-  },{
-    title: 'the title...',
-    startTime: new Date(moment().add(3, "day")),
-    endTime: new Date(moment().add(3, "day").add(3, "hour")),
-  }];
-
   return (
     <div id="week-calendar">
       <div className="calendar-header">
         <div className="month">
           <ul>
             <li className="navigation" onClick={() => prev()}>&#10094;</li>
-            <li className="">
+            <li>
               <DisplayText text={`Sun ${firstDayOfTheWeek} - Sat ${lastDayOfTheWeek}`} />
             </li>
             <li className="navigation" onClick={() => next()}>&#10095;</li>
@@ -153,9 +119,13 @@ const WeekCalendar = () => {
                   const minutPush = event.startTime.getMinutes() * (cellHeight / 60);
                   const duration = ((event.endTime.getTime() - event.startTime.getTime()) / 60000) * (cellHeight / 60); // duration in px
                   return (
-                    <div className="event" key={Math.random()} style={{ marginTop: `${minutPush}px`, height: `${duration}px` }}>
-                      <DisplayText text={event.title} />
-                    </div>
+                    <Event key={Math.random()}
+                      title={event.title}
+                      style={{
+                        marginTop: `${minutPush}px`,
+                        height: `${duration}px`
+                      }}
+                    />
                   )
                 }
               }
@@ -167,5 +137,14 @@ const WeekCalendar = () => {
     </div>
   );
 };
+
+WeekCalendar.propTypes = {
+  events: PropTypes.arrayOf(
+      PropTypes.shape({
+      startTime: PropTypes.object,
+      fontSize: PropTypes.number
+    })
+  )
+}
 
 export default WeekCalendar;

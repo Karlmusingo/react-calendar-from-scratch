@@ -3,8 +3,6 @@
     padding: 20px;
     .calendar-header {
         display: flex;
-        // grid-template-columns: 1fr;
-        // grid-template-rows: 1fr;
         justify-content: center;
         margin-bottom: 20px;
     }
@@ -23,9 +21,6 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
-        // display: grid;
-        // grid-template-columns: 1fr 1fr 1fr 1fr;
-        // grid-template-rows: 1fr;
     }
     .month ul li {
         color: #333A3F;
@@ -65,40 +60,11 @@
         background: #1abc9c;
         color: white !important;
     }
-    
-    /* Add media queries for smaller screens */
-    // @media screen and (max-width: 720px) {
-    //     .weekdays li,
-    //     #days li {
-    //         width: 13.1%;
-    //     }
-    // }
-    // @media screen and (max-width: 420px) {
-    //     .weekdays li,
-    //     #days li {
-    //         width: 12.5%;
-    //     }
-    //     #days li .active {
-    //         padding: 2px;
-    //     }
-    // }
-    // @media screen and (max-width: 290px) {
-    //     .weekdays li,
-    //     #days li {
-    //         width: 12.2%;
-    //     }
-    // }
+
     #days,
     #weekdays {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
         grid-template-rows: 1fr;
-    }
-    @media all and (-ms-high-contrast: none) {
-        #days {
-            display: -ms-grid;
-            -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-            -ms-grid-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-        }
     }
 }
