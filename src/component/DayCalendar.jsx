@@ -250,7 +250,9 @@ const DayCalendar = () => {
     title: 'The title...',
     startTime: new Date(moment().add(3, "hour")),
     endTime: new Date(moment().add(5, "hour")),
-  }]
+  }];
+
+  events.sort((a, b) => a.startTime.getHours() - b.startTime.getHours());
 
   const history = [];
 
@@ -289,13 +291,15 @@ const DayCalendar = () => {
         </ul>
 
         <ul id="days">
+
           {
              events.map((event) => {
               // if(event.startTime.getHours() === index) {
                 const time = event.startTime.getHours();
                 const minutPush = event.startTime.getMinutes() * (cellWidthDayView / 60);
                 const duration = ((event.endTime.getTime() - event.startTime.getTime()) / 60000) * (cellWidthDayView / 60); // duration in px
-                const exist = history.filter((el) => el.time === time
+                const exist = history.filter((el) => 
+                                  el.time === time
                                   ||
                                   (
                                   (el.time * cellWidthDayView + el.minutPush)
@@ -304,10 +308,10 @@ const DayCalendar = () => {
                                   &&
                                   (time * cellWidthDayView + minutPush)
                                   <
-                                  (el.time * cellWidthDayView + el.minutPush + el.duration)
-                ));
+                                  (el.time * cellWidthDayView + el.minutPush + el.duration))
+                );
                             
-                // console.log(exist, event);
+                console.log(exist);
             
                 history.push({time, duration, minutPush});
                 return (
