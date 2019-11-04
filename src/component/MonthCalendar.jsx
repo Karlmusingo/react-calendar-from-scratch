@@ -3,19 +3,13 @@
 import React, { useState } from 'react';
 import './MonthCalendar.scss';
 import { weekdays, months } from '../utils/constants';
+import DisplayText from './DisplayText';
 
 const today = new Date();
-// const dayIntDefault = today.getDate();
 const monthDefault = today.getMonth();
 const yearDefault = today.getFullYear();
 
-// eslint-disable-next-line react/prop-types
-const DisplayText = ({ text }) => (
-  <span>{text}</span>
-);
-
 const MonthCalendar = () => {
-//   const [dayInt, setDayInt] = useState(dayIntDefault);
   const [month, setMonth] = useState(monthDefault);
   const [year, setyear] = useState(yearDefault);
 

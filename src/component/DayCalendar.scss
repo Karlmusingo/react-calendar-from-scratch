@@ -23,14 +23,10 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
-        // display: grid;
-        // grid-template-columns: 1fr 1fr 1fr 1fr;
-        // grid-template-rows: 1fr;
     }
     .month ul li {
         color: #333A3F;
         font-size: 14px;
-        // text-transform: uppercase;
         letter-spacing: 3px;
     }
     .calendar-body {
@@ -38,13 +34,11 @@
         overflow: auto;
     }
     .calendar-body::-webkit-scrollbar {
-        // &:horizontal {
-            // display: block;
-            height: 7px;
-            box-sizing: border-box;
-            border: 1px solid #E5E8E9;
-            border-radius: 5.5px;
-            background-color: #E5E8E9;
+        height: 7px;
+        box-sizing: border-box;
+        border: 1px solid #E5E8E9;
+        border-radius: 5.5px;
+        background-color: #E5E8E9;
         
         &:vertical{
             width: 0px;
@@ -103,30 +97,14 @@
         padding: 5px 10px;
         color: #333A3F;
         position: absolute;
+
+        span {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
     }
 
-    /* Add media queries for smaller screens */
-    // @media screen and (max-width: 720px) {
-    //     .weekdays li,
-    //     #days li {
-    //         width: 13.1%;
-    //     }
-    // }
-    // @media screen and (max-width: 420px) {
-    //     .weekdays li,
-    //     #days li {
-    //         width: 12.5%;
-    //     }
-    //     #days li .active {
-    //         padding: 2px;
-    //     }
-    // }
-    // @media screen and (max-width: 290px) {
-    //     .weekdays li,
-    //     #days li {
-    //         width: 12.2%;
-    //     }
-    // }
     #days,
     #day-time {
         display: grid;
@@ -134,11 +112,4 @@
         grid-template-rows: 1fr;
         position: relative;
     }
-    // @media all and (-ms-high-contrast: none) {
-    //     #days {
-    //         display: -ms-grid;
-    //         -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    //         -ms-grid-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-    //     }
-    // }
 }
