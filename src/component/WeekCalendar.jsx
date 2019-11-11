@@ -2,83 +2,64 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import './WeekCalendar.scss';
 import { weekdays, months, cellHeight } from '../utils/constants';
 import Event from './Event';
 import DisplayText from './DisplayText';
 
-const today = new Date();
-const monthDefault = today.getMonth();
-const yearDefault = today.getFullYear();
-const firstDayOfTheWeekDefault = today.getDate() - today.getDay();
+const WeekCalendar = () => {
 
-const WeekCalendar = ({events = []}) => {
+  const events = [
+    {
+      title: 'The title...The title...The title...The title...The title...The title...',
+      startTime: new Date(),
+      endTime: new Date(moment().add(1, "hour")),
+    },{
+      title: 'The title...The title...The title...The title...The title...The title...',
+      startTime: new Date(),
+      endTime: new Date(moment().add(2, "hour")),
+    },{
+      title: 'The title...The title...The title...The title...The title...The title...',
+      startTime: new Date(moment().add(1, "hour")),
+      endTime: new Date(moment().add(2, "hour")),
+    }
+  ];
+
+  const [today, setToday] = useState(new Date());
+  const monthDefault = today.getMonth();
+  const yearDefault = today.getFullYear();
+  const firstDayOfTheWeekDefault = today.getDate() - today.getDay();
+
   const [month, setMonth] = useState(monthDefault);
-  const [year, setyear] = useState(yearDefault);
+  const [year, setYear] = useState(yearDefault);
   const [firstDayOfTheWeek, setFirstDayOfTheWeek] = useState(firstDayOfTheWeekDefault);
   const [lastDayOfTheWeek, setLastDayOfTheWeek] = useState(new Date(year, month, firstDayOfTheWeekDefault + 6).getDate());
 
   const numberOfDays = new Date(year, month + 1, 0).getDate();
 
+  useEffect(() => {
+    setMonth(today.getMonth());
+    setYear(today.getFullYear());
+    setFirstDayOfTheWeek(today.getDate() - today.getDay());
+    setLastDayOfTheWeek(new Date(year, month, firstDayOfTheWeekDefault + 6).getDate())
+  }, [today])
+
   const next = () => {
-    if ((firstDayOfTheWeek + 7) > numberOfDays) {
-      const newYear = month === 11 ? year + 1 : year;
-      const newMonth = (month + 1) % 12;
-      setMonth(newMonth);
-      setyear(newYear);
-    };
-
-    const newFirstDayOfTheWeek = new Date(year, month, (firstDayOfTheWeek + 7)).getDate();
-    const newLastDayOfTheWeek = new Date(year, month, (newFirstDayOfTheWeek + 6)).getDate();
-
-    setFirstDayOfTheWeek(newFirstDayOfTheWeek);
-    setLastDayOfTheWeek(newLastDayOfTheWeek);
-  };
+    setToday(new Date(moment(today).add(1, 'week')));
+  }
 
   const prev = () => {
-    if ((firstDayOfTheWeek - 7) < 1) {
-      const newYear = month === 0 ? year - 1 : year;
-      const newMonth = month === 0 ? 11 : month - 1;
-      setMonth(newMonth);
-      setyear(newYear);
-    }
-
-    const newFirstDayOfTheWeek = new Date(year, month, (firstDayOfTheWeek - 7)).getDate();
-    const newLastDayOfTheWeek = new Date(year, (firstDayOfTheWeek - 7) < 1 ? month - 1 : month, (newFirstDayOfTheWeek + 6)).getDate();
-
-    setFirstDayOfTheWeek(newFirstDayOfTheWeek);
-    setLastDayOfTheWeek(newLastDayOfTheWeek);
-  };
+    setToday(new Date(moment(today).add(-1, 'week')));
+  }
 
   const nextMonth = () => {
-    const newYear = month === 11 ? year + 1 : year;
-    const newMonth = (month + 1) % 12;
-
-    setMonth(newMonth);
-    setyear(newYear);
-  };
+    setToday(new Date(moment(today).add(1, 'month')));
+  }
 
   const prevMonth = () => {
-    const newYear = month === 0 ? year - 1 : year;
-    const newMonth = month === 0 ? 11 : month - 1;
-
-    // get the first week of the month
-    const firstDay = new Date(newYear, newMonth, 1); // first day of the month
-
-    const newFirstDayOfTheWeek = new Date(newYear, newMonth, 1 - firstDay.getDay()).getDate();
-    const newLastDayOfTheWeek = new Date(
-      newYear,
-      newMonth, 
-      new Date(newYear, newMonth - 1, newFirstDayOfTheWeek + 6).getDate()).getDate();
-    
-    setFirstDayOfTheWeek(newFirstDayOfTheWeek);
-    setLastDayOfTheWeek(newLastDayOfTheWeek);
-    // end
-
-    setMonth(newMonth);
-    setyear(newYear);
-  };
-
+    setToday(new Date(moment(today).add(-1, 'month')));
+  }
   return (
     <div id="week-calendar">
       <div className="calendar-header">
