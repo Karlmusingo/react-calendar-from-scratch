@@ -4,13 +4,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import moment from 'moment';
 import './DayCalendar.scss';
 import { weekdays, months, cellWidthDayView } from '../utils/constants';
+import DisplayText from './DisplayText';
 
 const today = new Date();
-
-// eslint-disable-next-line react/prop-types
-const DisplayText = ({ text, style={} }) => (
-  <span style={style}>{text}</span>
-);
 
 const formatHours = (hour) => {
   if (hour > 12) return `${hour - 12}PM`;
@@ -33,9 +29,7 @@ const addSuffix = (date) => {
   return date + "th";
 }
 
-const DayCalendar = () => {
-
-  const [day, setDay] = useState(today);
+const DayCalendar = ({day, setDay}) => {
 
   const calendarBody = useRef(null);
 
@@ -311,8 +305,6 @@ const DayCalendar = () => {
                                   <
                                   (el.time * cellWidthDayView + el.minutPush + el.duration))
                 );
-                            
-                console.log(exist);
             
                 history.push({time, duration, minutPush});
                 return (

@@ -1,33 +1,31 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 import './MonthCalendar.scss';
 import { weekdays, months } from '../utils/constants';
 import DisplayText from './DisplayText';
 
-const today = new Date();
-const monthDefault = today.getMonth();
-const yearDefault = today.getFullYear();
-
-const MonthCalendar = () => {
-  const [month, setMonth] = useState(monthDefault);
-  const [year, setyear] = useState(yearDefault);
+const MonthCalendar = ({day, setDay}) => {
+  const [month, setMonth] = useState(day.getMonth());
+  const [year, setYear] = useState(day.getFullYear());
 
   const numberOfDays = new Date(year, month + 1, 0).getDate();
   const skipDays = new Date(year, month).getDay();
 
+  useEffect(() => {
+    setMonth(day.getMonth());
+    setYear(day.getFullYear());
+  }, [day])
+
   const next = () => {
-    const newYear = month === 11 ? year + 1 : year;
-    const newMonth = (month + 1) % 12;
-    setMonth(newMonth);
-    setyear(newYear);
+    const newDay = new Date(moment(day).add(1, 'month'));
+    setDay(newDay)
   };
 
   const prev = () => {
-    const newYear = month === 0 ? year - 1 : year;
-    const newMonth = month === 0 ? 11 : month - 1;
-    setMonth(newMonth);
-    setyear(newYear);
+    const newDay = new Date(moment(day).add(-1, 'month'));
+    setDay(newDay)
   };
 
   return (

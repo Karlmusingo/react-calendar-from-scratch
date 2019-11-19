@@ -20,3 +20,33 @@ body {
     color: #2C7CF1 !important;
     cursor: pointer;
 }
+
+.calendar-view-setting {
+    display: flex;
+    position: absolute;
+    padding: 7px;
+    button {
+      height: 42px;
+      width: 42px;
+      border-radius: 50%;
+      padding: 0 !important;
+      margin-right: 9px;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      text-align: center;
+      font-family: Lato;
+      font-size: 12px;
+      font-weight: 500;
+      color: #838D93;
+      border: 1px solid #F0F1F1;
+      outline: none;
+      letter-spacing: 2px;
+      line-height: 15px;
+    }
+  
+    .active {
+      color: #F1802C;
+      border: 1px solid #F1802C;
+    }
+  }

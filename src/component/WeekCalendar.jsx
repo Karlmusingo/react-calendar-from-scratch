@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import './WeekCalendar.scss';
@@ -8,7 +8,7 @@ import { weekdays, months, cellHeight } from '../utils/constants';
 import Event from './Event';
 import DisplayText from './DisplayText';
 
-const WeekCalendar = () => {
+const WeekCalendar = ({day, setDay}) => {
 
   const events = [
     {
@@ -26,10 +26,10 @@ const WeekCalendar = () => {
     }
   ];
 
-  const [today, setToday] = useState(new Date());
-  const monthDefault = today.getMonth();
-  const yearDefault = today.getFullYear();
-  const firstDayOfTheWeekDefault = today.getDate() - today.getDay();
+  // const [] = useState(new Date());
+  const monthDefault = day.getMonth();
+  const yearDefault = day.getFullYear();
+  const firstDayOfTheWeekDefault = day.getDate() - day.getDay();
 
   const [month, setMonth] = useState(monthDefault);
   const [year, setYear] = useState(yearDefault);
@@ -39,26 +39,26 @@ const WeekCalendar = () => {
   const numberOfDays = new Date(year, month + 1, 0).getDate();
 
   useEffect(() => {
-    setMonth(today.getMonth());
-    setYear(today.getFullYear());
-    setFirstDayOfTheWeek(today.getDate() - today.getDay());
+    setMonth(day.getMonth());
+    setYear(day.getFullYear());
+    setFirstDayOfTheWeek(day.getDate() - day.getDay());
     setLastDayOfTheWeek(new Date(year, month, firstDayOfTheWeekDefault + 6).getDate())
-  }, [today])
+  }, [day])
 
   const next = () => {
-    setToday(new Date(moment(today).add(1, 'week')));
+    setDay(new Date(moment(day).add(1, 'week')));
   }
 
   const prev = () => {
-    setToday(new Date(moment(today).add(-1, 'week')));
+    setDay(new Date(moment(day).add(-1, 'week')));
   }
 
   const nextMonth = () => {
-    setToday(new Date(moment(today).add(1, 'month')));
+    setDay(new Date(moment(day).add(1, 'month')));
   }
 
   const prevMonth = () => {
-    setToday(new Date(moment(today).add(-1, 'month')));
+    setDay(new Date(moment(day).add(-1, 'month')));
   }
   return (
     <div id="week-calendar">
