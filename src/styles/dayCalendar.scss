@@ -1,74 +1,90 @@
+@import './variables';
+
+
 #day-calendar {
-    background: #ffff;
-    padding: 20px;
+    background: map-get($color-white, 000);
+    margin-left: 50px;
+
+    li {
+        list-style-type: none;
+    }
+    .navigation {
+        color: $color-primary !important;
+        cursor: pointer;
+    }
     .calendar-header {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr;
         justify-items: center;
+        height: 42px;
         margin-bottom: 20px;
+    }
+    .day {
+        justify-self: end !important;
+        margin-right: 14px;
     }
     .month {
         padding: 10px 15px;
-        height: 42px;
-        width: 219px;
+        width: 198px;
+        justify-self: start;
+        display: flex;
+        align-items: center;
         text-align: center;
-        border: 1px solid #F0F1F1;
+        border: 1px solid map-get($color-white, 100);
         border-radius: 21px;
+        margin: 8px;
     }
     .month ul {
         margin: 0;
         padding: 0;
-        width: 189px;
+        width: 198px;
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
     }
     .month ul li {
-        color: #333A3F;
+        color: map-get($color-black, 700);
         font-size: 14px;
         // letter-spacing: 3px;
+        font-family: Verdana, sans-serif;
+        line-height: 17px;
+        text-align: center;
     }
     .calendar-body {
         width: 100%;
-        overflow: auto;
+        overflow-x: scroll;
     }
     .calendar-body::-webkit-scrollbar {
         height: 7px;
         box-sizing: border-box;
-        border: 1px solid #E5E8E9;
+        border: 1px solid map-get($color-white, 550);
         border-radius: 5.5px;
-        background-color: #E5E8E9;
-        
-        &:vertical{
-            width: 0px;
-        }
+        background-color: map-get($color-white, 550);
     }
     .calendar-body::-webkit-scrollbar-thumb {
         &:horizontal{
             height: 6px;
             border-radius: 5.5px;
-            background-color: #2C7CF1;
+            background-color:$color-next-button;
         }
     }
 
     #day-time {
         margin: 0;
         padding: 0;
-        border-bottom: 1px dashed #E3E6E7;
-        position: fixed;
-        // border-left: 1px solid #E3E6E7;
+        border-bottom: 1px dashed map-get($color-white, 550);
     }
     #day-time li {
-        color: #838D93;
+        color: map-get($color-gray, 0);
         font-size: 12px;
         font-weight: 500;
         line-height: 15px;
         // letter-spacing: 2px;
         padding: 8px 0 16px 8px;
-        border-left: 1px solid #E3E6E7;
+        border-left: 1px solid map-get($color-white, 550);
         overflow: auto;
-        // text-align: center;
+        border-top: 1px solid map-get($color-white, 550);
     }
     #days {
         padding: 0;
@@ -76,19 +92,17 @@
     }
     #days li {
         list-style-type: none;
-        // text-align: center;
-        // text-transform: uppercase;
         font-size: 12px;
         font-weight: 500;
-        color: #838D93;
-        // padding: 15px;
+        color: map-get($color-white, 600);
         height: 19px;
-        border-left: 1px solid #E3E6E7;
-        border-bottom: 1px dashed #E3E6E7;
+        border-left: 1px solid map-get($color-white, 550);
+        border-bottom: 1px dashed map-get($color-white, 550);
+        
     }
     #days li.active {
-        background: #1abc9c;
-        color: white !important;
+        background: $color-green-light;
+        color: map-get($color-white, 000) !important;
     }
 
     .event {
@@ -96,23 +110,22 @@
         border-radius: 5px;
         background-color: rgba(44,124,241,0.11);
         padding: 5px 10px;
-        color: #333A3F;
+        color: map-get($color-black, 700);
         position: absolute;
+        font-family: Verdana, sans-serif;
+        font-size: 12px;
+        line-height: 15px;
 
         span {
             display: block;
-            // width: 100%;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
-            // white-space: pre-wrap;      /* CSS3 */   
-            // white-space: -moz-pre-wrap; /* Firefox */    
-            // white-space: -pre-wrap;     /* Opera <7 */   
-            // white-space: -o-pre-wrap;   /* Opera 7 */    
-            // word-wrap: break-word; 
         }
     }
-
+.event span a{
+    color: map-get($color-black, 700);
+}
     #days,
     #day-time {
         display: grid;
@@ -120,4 +133,4 @@
         grid-template-rows: 1fr;
         position: relative;
     }
-}
+} 

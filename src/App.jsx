@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import MonthCalendar from './component/MonthCalendar';
-import WeekCalendar from './component/WeekCalendar';
-import DayCalendar from './component/DayCalendar';
+import Calendar from './calendars'
 import './App.scss';
 
 const App = () => {
@@ -15,7 +13,8 @@ const App = () => {
 
   return (
     <div style={{ marginTop: '50px', position: 'relative' }}>
-      <div className="calendar-view-setting">
+      <Calendar />
+      {/* <div className="calendar-view-setting">
         <button
           className={calendarView === 'day' ? 'active' : ''}
           onClick={() => calendarSetting('day')}
@@ -37,7 +36,7 @@ const App = () => {
       </div>
       {calendarView === 'day' ? <DayCalendar day={day} setDay={setDay} /> : null}
       {calendarView === 'week' ? <WeekCalendar day={day} setDay={setDay} /> : null}
-      {calendarView === 'month' ? <MonthCalendar day={day} setDay={setDay} /> : null}
+      {calendarView === 'month' ? <MonthCalendar day={day} setDay={setDay} /> : null} */}
     </div>
   )
 };
