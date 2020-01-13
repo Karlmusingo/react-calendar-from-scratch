@@ -1,8 +1,3 @@
-/* eslint-disable react/jsx-indent */
-/* eslint-disable array-callback-return */
-/* eslint-disable consistent-return */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import { weekdays, months } from './Constants';
 import DisplayText from './DisplayText';
@@ -13,7 +8,6 @@ const today = new Date();
 const monthDefault = today.getMonth();
 const yearDefault = today.getFullYear();
 
-/* istanbul ignore next */
 const MonthCalendar = (events) => {
   const [month, setMonth] = useState(monthDefault);
   const [year, setyear] = useState(yearDefault);
@@ -74,7 +68,7 @@ const MonthCalendar = (events) => {
                           className="event-month-calendar"
                           key={Math.random()}
                           text={`${event.startTime.getHours()}:${event.startTime.getMinutes()}`}
-                          name={event.title.split(' ')[0]}
+                          name={event.title}
                         />
                       );
                     }
