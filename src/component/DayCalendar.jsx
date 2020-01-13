@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useRef, useEffect } from 'react';
 import moment from 'moment';
 import './DayCalendar.scss';
@@ -316,8 +314,6 @@ const DayCalendar = ({day, setDay}) => {
                     <DisplayText text={event.title} />
                   </div>
                 )
-              // }
-              // return null
             })
           }
           {[...(Array(24 * 18))].map((value, index) =>  (

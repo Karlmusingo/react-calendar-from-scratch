@@ -1,10 +1,3 @@
-/* eslint-disable react/require-default-props */
-/* eslint-disable no-shadow */
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable import/first */
-/* eslint-disable no-unused-vars */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -14,7 +7,6 @@ import DisplayText from './DisplayText';
 import '../styles/WeekCalendars.scss';
 
 
-/* istanbul ignore next */
 const WeekCalendar = ({ events = [] }) => {
   const [today, setToday] = useState(new Date());
   const monthDefault = today.getMonth();
