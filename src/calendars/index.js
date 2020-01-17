@@ -1,3 +1,6 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import moment from 'moment';
 import DayCalendar from './DayCalendar';
@@ -12,17 +15,17 @@ const eventsDefault = [
   {
     startTime: new Date(),
     endTime: new Date(moment().add(1, 'hour')),
-    title: `${titleText}`
+    title: `${titleText}`,
   },
   {
     startTime: new Date(),
     endTime: new Date(moment().add(1, 'hour')),
-    title: `${titleText}`
+    title: `${titleText}`,
   },
   {
     startTime: new Date(),
     endTime: new Date(moment().add(1, 'hour')),
-    title: `${titleText}`
+    title: `${titleText}`,
   },
 ];
 
@@ -30,7 +33,7 @@ const Calendar = (events = eventsDefault) => {
   const [calendarView, setCalendarView] = useState('week');
 
   const formatEventTime = (events) => {
-    const newEvents = events.map(event => ({
+    const newEvents = events.map((event) => ({
       ...event,
       title: event.eventTitle,
       startTime: new Date(event.startTime),
