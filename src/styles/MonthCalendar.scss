@@ -57,6 +57,11 @@
     margin: 0;
     overflow: auto;
   }
+
+  .empty-cells {
+    color: map-get($color-white, 400) !important;
+  }
+
   #days li {
     list-style-type: none;
     // text-align: center;

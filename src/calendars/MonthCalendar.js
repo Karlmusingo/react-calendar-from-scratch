@@ -16,6 +16,7 @@ const MonthCalendar = (events) => {
   const [year, setyear] = useState(yearDefault);
 
   const numberOfDays = new Date(year, month + 1, 0).getDate();
+  const numberOfDaysPreviousMonth = new Date(year, month, 0).getDate();
   const skipDays = new Date(year, month).getDay();
 
   const next = () => {
@@ -55,12 +56,17 @@ const MonthCalendar = (events) => {
       </ul>
 
       <ul id="days">
-
-        {
-          [...(Array(skipDays)).fill('*'), ...Array(numberOfDays).keys()].map((day) => (
-            day === '*' ? <li key={Math.random()}>{ }</li> : (
-              <li key={Math.random()}>
-                {
+       {
+          [
+            ...(Array(skipDays)).fill('*'),
+            ...Array(numberOfDays).keys(),
+            ...Array(42 - (skipDays + numberOfDays)).keys()
+          ].map((day, index) => (
+            day === '*' ? 
+            <li className="empty-cells" key={Math.random()}> { numberOfDaysPreviousMonth - (skipDays - 1) + index } </li> 
+            :
+            <li className={ index > (numberOfDays + skipDays - 1) ? 'empty-cells' : " "} key={Math.random()}>
+               {
                   day + 1 && day + 1 === today.getDate() ? (
                     <span className="currentDay">
                       {day + 1}
@@ -68,26 +74,25 @@ const MonthCalendar = (events) => {
                   ) : day + 1
               }
              &nbsp;
-                <br />
-                {
-                  events.events.map((event) => {
-                    if (day + 1 === event.startTime.getDate()
-                     && month === event.startTime.getMonth()) {
-                      return (
-                        <DisplayEvent
-                          className="event-month-calendar"
-                          key={Math.random()}
-                          text={`${event.startTime.getHours()}:${event.startTime.getMinutes()}`}
-                          name={event.title}
-                        />
-                      );
-                    }
-                  })
-                }
-              </li>
-            )
+             <br />
+              {
+                events.events.map((event) => {
+                  if (day + 1 === event.startTime.getDate()
+                    && month === event.startTime.getMonth()) {
+                    return (
+                      <DisplayEvent
+                        className="event-month-calendar"
+                        key={Math.random()}
+                        text={`${event.startTime.getHours()}:${event.startTime.getMinutes()}`}
+                        name={event.title}
+                      />
+                    );
+                  }
+                })
+              }
+            </li>
           ))
-}
+        }
 
       </ul>
     </div>
