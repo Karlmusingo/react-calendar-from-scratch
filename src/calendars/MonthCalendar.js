@@ -1,6 +1,3 @@
-/* eslint-disable array-callback-return */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState } from 'react';
 import { weekdays, months } from './Constants';
 import DisplayText from './DisplayText';
@@ -48,7 +45,7 @@ const MonthCalendar = (events) => {
 
       <ul id="weekdays">
         {
-           weekdays.map((day) => (
+           weekdays.map(day => (
              <li key={Math.random()}>{day}</li>
            ))
          }
@@ -57,13 +54,12 @@ const MonthCalendar = (events) => {
       <ul id="days">
 
         {
-          [...(Array(skipDays)).fill('*'), ...Array(numberOfDays).keys()].map((day) => (
-            day === '*' ? <li key={Math.random()}>{ }</li> : (
-              <li key={Math.random()}>
-                {day + 1}
+          [...(Array(skipDays)).fill('*'), ...Array(numberOfDays).keys()].map(day => (
+           day === '*' ? <li key={Math.random()}>{ }</li> : <li key={Math.random()}>
+             {day + 1}
              &nbsp;
-                <br />
-                {
+             <br />
+             {
                   events.events.map((event) => {
                     if (day + 1 === event.startTime.getDate()
                      && month === event.startTime.getMonth()) {
@@ -78,10 +74,8 @@ const MonthCalendar = (events) => {
                     }
                   })
                 }
-              </li>
-            )
-          ))
-}
+                                                            </li>
+         ))}
 
       </ul>
     </div>
@@ -89,3 +83,4 @@ const MonthCalendar = (events) => {
 };
 
 export default MonthCalendar;
+

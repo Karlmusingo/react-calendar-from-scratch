@@ -63,18 +63,17 @@
     #days {
         padding: 0;
         margin: 0;
-        height: 500px;
+        height: 361px;
+        overflow: auto;
     }
-  
     #days li {
         list-style-type: none;
         font-size: 12px;
         font-weight: 500;
-        color: map-get($color-gray, 1300);
-        height: 32px;
+        color: map-get($color-gray, 0);
+        height: 19px;
         border-left: 1px solid map-get($color-white, 550);
         border-bottom: 1px dashed map-get($color-white, 550);
-        padding:  12px 0 0 25px;
     }
 
     #days li.active {
@@ -105,7 +104,7 @@
 
     #weekdays {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
         grid-template-rows: 1fr;
     }
 
@@ -113,26 +112,9 @@
         display: flex;
         flex-wrap: wrap;
         overflow: overlay !important;
-        z-index: -1;
-        // #hours {
-        //     font-size: 12px;
-        //     width: 15%;
-        //     font-family: Verdana, sans-serif;
-        //     // position;
-        //     padding-top: 10px;
-        //     padding-left: 2px;
-        //     span{
-        //             box-sizing: border-box;
-        //             width: 30%;
-        //             height: 100%;
-        //             border-right: 1px dashed map-get($color-white, 550);
-        //             padding: 0 5px;
-        //             height: 700px;
-        //     }
-        // }
         li {
-            width: (100% / 8);
-            display: flex;;
+            width: (100% / 7);
+            display: flex;
         }
     }
 }

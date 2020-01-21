@@ -1,6 +1,7 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
+const useCalendarDay = (defaultDay = new Date()) => {
+  return useState(defaultDay);
+}
 
-const useCalendarDay = (defaultDay = new Date()) => useState(defaultDay);
 export default useCalendarDay;
