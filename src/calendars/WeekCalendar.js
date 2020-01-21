@@ -1,7 +1,13 @@
+/* eslint-disable react/require-default-props */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { weekdays, months, monthsShort, cellHeight } from './Constants';
+import {
+  weekdays, months, cellHeight, monthsShort,
+} from '../utils/constants';
+import displayHours from '../utils/displayHours';
 import Event from './Event';
 import DisplayText from './DisplayText';
 import '../styles/WeekCalendars.scss';
@@ -19,25 +25,27 @@ const WeekCalendar = ({ events = [] }) => {
   const [lastDayOfTheWeek, setLastDayOfTheWeek] = useState(new Date(year, month,
     firstDayOfTheWeekDefault + 6).getDate());
 
-  useEffect(() => {
-    setMonth(today.getMonth());
-    setYear(today.getFullYear());
-    setFirstDayOfTheWeek(new Date(year, month, today.getDate() - today.getDay()).getDate());
-    setLastDayOfTheWeek(new Date(year, month, firstDayOfTheWeekDefault + 6).getDate());
-  }, [today]);
-
   const dispalyMonth = () => {
     const startOfTheWeek = new Date(year, month, today.getDate() - today.getDay());
     const endOfTheWeek = new Date(year, month, firstDayOfTheWeekDefault + 6);
-    if(startOfTheWeek.getMonth() !== endOfTheWeek.getMonth()) {
-      if(startOfTheWeek.getFullYear() !== endOfTheWeek.getFullYear()) {
+    if (startOfTheWeek.getMonth() !== endOfTheWeek.getMonth()) {
+      if (startOfTheWeek.getFullYear() !== endOfTheWeek.getFullYear()) {
         return `${monthsShort[startOfTheWeek.getMonth()]} ${startOfTheWeek.getFullYear()} - 
-                      ${monthsShort[endOfTheWeek.getMonth()]} ${endOfTheWeek.getFullYear()}`;
+                        ${monthsShort[endOfTheWeek.getMonth()]} ${endOfTheWeek.getFullYear()}`;
       }
       return `${monthsShort[startOfTheWeek.getMonth()]} - ${monthsShort[endOfTheWeek.getMonth()]} ${year}`;
     }
     return `${months[month]} ${year}`;
-  }
+  };
+
+  // const numberOfDays = new Date(year, month + 1, 0).getDate();
+
+  useEffect(() => {
+    setMonth(today.getMonth());
+    setYear(today.getFullYear());
+    setFirstDayOfTheWeek(today.getDate() - today.getDay());
+    setLastDayOfTheWeek(new Date(year, month, firstDayOfTheWeekDefault + 6).getDate());
+  }, [today]);
 
   const next = () => {
     setToday(new Date(moment(today).add(1, 'week')));
@@ -54,7 +62,6 @@ const WeekCalendar = ({ events = [] }) => {
   const prevMonth = () => {
     setToday(new Date(moment(today).add(-1, 'month')));
   };
-
   return (
     <div id="week-calendar">
       <div className="calendar-header">
@@ -77,23 +84,31 @@ const WeekCalendar = ({ events = [] }) => {
           </ul>
         </div>
       </div>
-
       <ul id="weekdays">
+        <li>Time</li>
         {
-           weekdays.map(day => (
+           weekdays.map((day) => (
              <li key={Math.random()}>{day}</li>
            ))
          }
       </ul>
-
       <ul id="days">
-        {[...(Array(168))].map((value, index) => (
-          <li key={Math.random()} style={{}}>{
+        {[...(Array(188))].map((value, index) => (
+          <li>
+            {
+              index % 8 === 0 ? (
+                <>
+                  {displayHours(index / 8)}
+                </>
+              ) : null
+            }
+            {
+
              events.map((event) => {
                const startOfTheWeek = new Date(year, month, firstDayOfTheWeek).getTime();
                const endOfTheWeek = new Date(year, month, lastDayOfTheWeek).getTime();
-               if (startOfTheWeek <= event.startTime.getTime() &&
-               event.startTime.getTime() <= endOfTheWeek) {
+               if (startOfTheWeek <= event.startTime.getTime()
+               && event.startTime.getTime() <= endOfTheWeek) {
                  if ((index % 7) === event.startTime.getDay()) {
                    if (event.startTime.getHours() === Math.trunc(index / 7)) {
                      const minutPush = event.startTime.getMinutes() * (cellHeight / 60);
@@ -103,7 +118,7 @@ const WeekCalendar = ({ events = [] }) => {
                        <div>
                          <Event
                            key={Math.random()}
-                           ttitle={event.title}
+                          //  ttitle={event.title}
                            title={`${event.startTime.getHours()}:${event.startTime.getMinutes()} PM`}
                            style={{
                              marginTop: `${minutPush}px`,
@@ -120,7 +135,7 @@ const WeekCalendar = ({ events = [] }) => {
              })
            }
           </li>
-         ))}
+        ))}
       </ul>
     </div>
   );
