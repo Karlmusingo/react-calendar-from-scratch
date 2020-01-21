@@ -87,14 +87,14 @@ const WeekCalendar = ({ events = [] }) => {
       <ul id="weekdays">
         <li>Time</li>
         {
-           weekdays.map((day) => (
+           weekdays.map((day, index) => (
              <li key={Math.random()}>
                {
-                  day && day === d.toDateString().slice(0, 3) ? (
-                    <span className="currentDay">
-                      {day}
+                  (
+                    <span className={day && day === d.toDateString().slice(0, 3) ? "currentDay" : " "}>
+                      {`${day} ${new Date(year, month, firstDayOfTheWeek + index).getDate()}`}
                     </span>
-                  ) : day
+                  ) 
               }
              </li>
            ))
@@ -105,9 +105,9 @@ const WeekCalendar = ({ events = [] }) => {
           <li>
             {
               index % 8 === 0 ? (
-                <>
+                <span className="hours">
                   {displayHours(index / 8)}
-                </>
+                </span>
               ) : null
             }
             {
