@@ -5,8 +5,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import {
-  weekdays, months, cellHeight,
-} from './Constants';
+  weekdays, months, cellHeight, monthsShort,
+} from '../utils/constants';
 import displayHours from '../utils/displayHours';
 import Event from './Event';
 import DisplayText from './DisplayText';
@@ -24,6 +24,19 @@ const WeekCalendar = ({ events = [] }) => {
   const [firstDayOfTheWeek, setFirstDayOfTheWeek] = useState(firstDayOfTheWeekDefault);
   const [lastDayOfTheWeek, setLastDayOfTheWeek] = useState(new Date(year, month,
     firstDayOfTheWeekDefault + 6).getDate());
+
+  const dispalyMonth = () => {
+    const startOfTheWeek = new Date(year, month, today.getDate() - today.getDay());
+    const endOfTheWeek = new Date(year, month, firstDayOfTheWeekDefault + 6);
+    if (startOfTheWeek.getMonth() !== endOfTheWeek.getMonth()) {
+      if (startOfTheWeek.getFullYear() !== endOfTheWeek.getFullYear()) {
+        return `${monthsShort[startOfTheWeek.getMonth()]} ${startOfTheWeek.getFullYear()} - 
+                        ${monthsShort[endOfTheWeek.getMonth()]} ${endOfTheWeek.getFullYear()}`;
+      }
+      return `${monthsShort[startOfTheWeek.getMonth()]} - ${monthsShort[endOfTheWeek.getMonth()]} ${year}`;
+    }
+    return `${months[month]} ${year}`;
+  };
 
   // const numberOfDays = new Date(year, month + 1, 0).getDate();
 
@@ -64,9 +77,8 @@ const WeekCalendar = ({ events = [] }) => {
         <div className="month">
           <ul>
             <li className="navigation" onClick={() => prevMonth()}>&#10094;</li>
-            <li>
-              {' '}
-              <DisplayText text={`${months[month]} ${year}`} />
+            <li className="">
+              <DisplayText text={dispalyMonth()} />
             </li>
             <li className="navigation" onClick={() => nextMonth()}>&#10095;</li>
           </ul>

@@ -1,6 +1,6 @@
-/* eslint-disable array-callback-return */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable array-callback-return */
 import React, { useState } from 'react';
 import { weekdays, months } from './Constants';
 import DisplayText from './DisplayText';
