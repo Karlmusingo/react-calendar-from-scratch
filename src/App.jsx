@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import Calendar from './calendars'
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react';
+import Calendar from './calendars';
 import './App.scss';
 
 const App = () => {
-  
   const [day, setDay] = useState(new Date());
   const [calendarView, setCalendarView] = useState('week');
 
@@ -38,7 +38,7 @@ const App = () => {
       {calendarView === 'week' ? <WeekCalendar day={day} setDay={setDay} /> : null}
       {calendarView === 'month' ? <MonthCalendar day={day} setDay={setDay} /> : null} */}
     </div>
-  )
+  );
 };
 
 export default App;

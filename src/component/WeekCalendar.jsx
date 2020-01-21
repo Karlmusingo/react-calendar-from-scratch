@@ -26,7 +26,7 @@ const WeekCalendar = ({day, setDay}) => {
     }
   ];
 
-  // const [] = useState(new Date());
+
   const monthDefault = day.getMonth();
   const yearDefault = day.getFullYear();
   const firstDayOfTheWeekDefault = day.getDate() - day.getDay();
@@ -86,6 +86,7 @@ const WeekCalendar = ({day, setDay}) => {
       <ul id="weekdays">
         {
           weekdays.map((day) => (
+            New,
             <li key={Math.random()}>{day}</li>
           ))
         }

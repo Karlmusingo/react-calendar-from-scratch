@@ -1,84 +1,84 @@
-#week-calendar {
-    background: #ffff;
-    padding: 20px;
-    .calendar-header {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr;
-        justify-items: center;
-        margin-bottom: 20px;
-    }
-    .month {
-        padding: 10px 15px;
-        height: 42px;
-        width: 219px;
-        text-align: center;
-        border: 1px solid #F0F1F1;
-        border-radius: 21px;
-    }
-    .month ul {
-        margin: 0;
-        padding: 0;
-        width: 189px;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-    }
-    .month ul li {
-        color: #333A3F;
-        font-size: 14px;
-        // letter-spacing: 3px;
-    }
-    #weekdays {
-        margin: 0;
-        padding: 0;
-        border-bottom: 1px dashed #E3E6E7;
-    }
-    #weekdays li {
-        color: #838D93;
-        padding: 8px 0 16px 8px;
-        border-left: 1px solid #E3E6E7;
-    }
-    #days {
-        padding: 0;
-        margin: 0;
-        height: 361px;
-        overflow: auto;
-    }
-    #days li {
-        list-style-type: none;
-        font-size: 12px;
-        font-weight: 500;
-        color: #838D93;
-        height: 19px;
-        border-left: 1px solid #E3E6E7;
-        border-bottom: 1px dashed #E3E6E7;
-    }
+// #week-calendar {
+//     background: #ffff;
+//     padding: 20px;
+//     .calendar-header {
+//         display: grid;
+//         grid-template-columns: 1fr 1fr;
+//         grid-template-rows: 1fr;
+//         justify-items: center;
+//         margin-bottom: 20px;
+//     }
+//     .month {
+//         padding: 10px 15px;
+//         height: 42px;
+//         width: 219px;
+//         text-align: center;
+//         border: 1px solid #F0F1F1;
+//         border-radius: 21px;
+//     }
+//     .month ul {
+//         margin: 0;
+//         padding: 0;
+//         width: 189px;
+//         display: flex;
+//         justify-content: space-between;
+//         align-items: flex-end;
+//     }
+//     .month ul li {
+//         color: #333A3F;
+//         font-size: 14px;
+//         // letter-spacing: 3px;
+//     }
+//     #weekdays {
+//         margin: 0;
+//         padding: 0;
+//         border-bottom: 1px dashed #E3E6E7;
+//     }
+//     #weekdays li {
+//         color: #838D93;
+//         padding: 8px 0 16px 8px;
+//         border-left: 1px solid #E3E6E7;
+//     }
+//     #days {
+//         padding: 0;
+//         margin: 0;
+//         height: 361px;
+//         overflow: auto;
+//     }
+//     #days li {
+//         list-style-type: none;
+//         font-size: 12px;
+//         font-weight: 500;
+//         color: #838D93;
+//         height: 19px;
+//         border-left: 1px solid #E3E6E7;
+//         border-bottom: 1px dashed #E3E6E7;
+//     }
 
-    #days li.active {
-        background: #1abc9c;
-        color: white !important;
-    }
+//     #days li.active {
+//         background: #1abc9c;
+//         color: white !important;
+//     }
 
-    .event {
-        margin: 0 0.2rem;
-        border-radius: 5px;
-        background-color: rgba(44,124,241,0.11);
-        padding: 5px 10px;
-        width: 100%;
-        color: #333A3F;
-        overflow: hidden;
+//     .event {
+//         margin: 0 0.2rem;
+//         border-radius: 5px;
+//         background-color: rgba(44,124,241,0.11);
+//         padding: 5px 10px;
+//         width: 100%;
+//         color: #333A3F;
+//         overflow: hidden;
 
-        span {
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-    }
+//         span {
+//             overflow: hidden;
+//             white-space: nowrap;
+//             text-overflow: ellipsis;
+//         }
+//     }
 
-    #weekdays {
-         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-        grid-template-rows: 1fr;
-    }
-} 
+//     #weekdays {
+//          display: grid;
+//         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+//         grid-template-rows: 1fr;
+//     }
+// } 
