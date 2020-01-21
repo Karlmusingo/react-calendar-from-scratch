@@ -1,40 +1,38 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable no-use-before-define */
-/* eslint-disable react/prop-types */
-import React, { useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import moment from 'moment';
 import './DayCalendar.scss';
 import { weekdays, months, cellWidthDayView } from '../utils/constants';
 import DisplayText from './DisplayText';
 
+const today = new Date();
 
 const formatHours = (hour) => {
   if (hour > 12) return `${hour - 12}PM`;
   if (hour === 12) return `${hour}PM`;
   return `${hour}AM`;
-};
+}
 
 const addSuffix = (date) => {
-  const moduloTen = date % 10;
-  const moduloHundred = date % 100;
+  const moduloTen = date % 10,
+        moduloHundred = date % 100;
   if (moduloTen === 1 && moduloHundred !== 11) {
-    return `${date}st`;
+      return date + "st";
   }
   if (moduloTen === 2 && moduloHundred !== 12) {
-    return `${date}nd`;
+      return date + "nd";
   }
   if (moduloTen === 3 && moduloHundred !== 13) {
-    return `${date}rd`;
+      return date + "rd";
   }
-  return `${date}th`;
-};
+  return date + "th";
+}
 
-const DayCalendar = ({ day, setDay }) => {
+const DayCalendar = ({day, setDay}) => {
+
   const calendarBody = useRef(null);
 
-  useEffect(() => {
-    startOn(day.getHours());
+  useEffect(()=>{
+    startOn(day.getHours())
   });
 
   const startOn = (hour) => {
@@ -46,12 +44,12 @@ const DayCalendar = ({ day, setDay }) => {
 
   const next = () => {
     const newDay = new Date(moment(day).add(1, 'day'));
-    setDay(newDay);
+    setDay(newDay)
   };
 
   const prev = () => {
     const newDay = new Date(moment(day).add(-1, 'week'));
-    setDay(newDay);
+    setDay(newDay)
   };
 
   const nextMonth = () => {
@@ -66,186 +64,186 @@ const DayCalendar = ({ day, setDay }) => {
 
   const events = [
     {
-      title: 'The title...The title...The title...The title...The title...The title...',
-      startTime: new Date(),
-      endTime: new Date(moment().add(2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(3, 'hour')),
-      endTime: new Date(moment().add(5, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(-3, 'hour')),
-      endTime: new Date(moment().add(-2, 'hour')),
-    }, {
-      title: 'The title.The title...The title...The title...The title...The title.....',
-      startTime: new Date(moment().add(1, 'hour')),
-      endTime: new Date(moment().add(2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(3, 'hour')),
-      endTime: new Date(moment().add(5, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(),
-      endTime: new Date(moment().add(2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(3, 'hour')),
-      endTime: new Date(moment().add(5, 'hour')),
-    }, {
-      title: 'The title.The title...The title...The title.....',
-      startTime: new Date(moment().add(-3, 'hour')),
-      endTime: new Date(moment().add(-2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(1, 'hour')),
-      endTime: new Date(moment().add(2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(3, 'hour')),
-      endTime: new Date(moment().add(5, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(),
-      endTime: new Date(moment().add(2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(3, 'hour')),
-      endTime: new Date(moment().add(5, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(-3, 'hour')),
-      endTime: new Date(moment().add(-2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(1, 'hour')),
-      endTime: new Date(moment().add(2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(3, 'hour')),
-      endTime: new Date(moment().add(5, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(),
-      endTime: new Date(moment().add(2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(3, 'hour')),
-      endTime: new Date(moment().add(5, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(-3, 'hour')),
-      endTime: new Date(moment().add(-2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(1, 'hour')),
-      endTime: new Date(moment().add(2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(3, 'hour')),
-      endTime: new Date(moment().add(5, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(),
-      endTime: new Date(moment().add(2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(3, 'hour')),
-      endTime: new Date(moment().add(5, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(-3, 'hour')),
-      endTime: new Date(moment().add(-2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(1, 'hour')),
-      endTime: new Date(moment().add(2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(3, 'hour')),
-      endTime: new Date(moment().add(5, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(),
-      endTime: new Date(moment().add(2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(3, 'hour')),
-      endTime: new Date(moment().add(5, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(-3, 'hour')),
-      endTime: new Date(moment().add(-2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(1, 'hour')),
-      endTime: new Date(moment().add(2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(3, 'hour')),
-      endTime: new Date(moment().add(5, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(),
-      endTime: new Date(moment().add(2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(3, 'hour')),
-      endTime: new Date(moment().add(5, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(-3, 'hour')),
-      endTime: new Date(moment().add(-2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(1, 'hour')),
-      endTime: new Date(moment().add(2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(3, 'hour')),
-      endTime: new Date(moment().add(5, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(),
-      endTime: new Date(moment().add(2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(3, 'hour')),
-      endTime: new Date(moment().add(5, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(-3, 'hour')),
-      endTime: new Date(moment().add(-2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(1, 'hour')),
-      endTime: new Date(moment().add(2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(3, 'hour')),
-      endTime: new Date(moment().add(5, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(),
-      endTime: new Date(moment().add(2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(3, 'hour')),
-      endTime: new Date(moment().add(5, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(-3, 'hour')),
-      endTime: new Date(moment().add(-2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(1, 'hour')),
-      endTime: new Date(moment().add(2, 'hour')),
-    }, {
-      title: 'The title...',
-      startTime: new Date(moment().add(3, 'hour')),
-      endTime: new Date(moment().add(5, 'hour')),
-    }];
+    title: 'The title...The title...The title...The title...The title...The title...',
+    startTime: new Date(),
+    endTime: new Date(moment().add(2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(3, "hour")),
+    endTime: new Date(moment().add(5, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(-3, "hour")),
+    endTime: new Date(moment().add(-2, "hour")),
+  },{
+    title: 'The title.The title...The title...The title...The title...The title.....',
+    startTime: new Date(moment().add(1, "hour")),
+    endTime: new Date(moment().add(2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(3, "hour")),
+    endTime: new Date(moment().add(5, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(),
+    endTime: new Date(moment().add(2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(3, "hour")),
+    endTime: new Date(moment().add(5, "hour")),
+  },{
+    title: 'The title.The title...The title...The title.....',
+    startTime: new Date(moment().add(-3, "hour")),
+    endTime: new Date(moment().add(-2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(1, "hour")),
+    endTime: new Date(moment().add(2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(3, "hour")),
+    endTime: new Date(moment().add(5, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(),
+    endTime: new Date(moment().add(2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(3, "hour")),
+    endTime: new Date(moment().add(5, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(-3, "hour")),
+    endTime: new Date(moment().add(-2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(1, "hour")),
+    endTime: new Date(moment().add(2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(3, "hour")),
+    endTime: new Date(moment().add(5, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(),
+    endTime: new Date(moment().add(2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(3, "hour")),
+    endTime: new Date(moment().add(5, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(-3, "hour")),
+    endTime: new Date(moment().add(-2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(1, "hour")),
+    endTime: new Date(moment().add(2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(3, "hour")),
+    endTime: new Date(moment().add(5, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(),
+    endTime: new Date(moment().add(2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(3, "hour")),
+    endTime: new Date(moment().add(5, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(-3, "hour")),
+    endTime: new Date(moment().add(-2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(1, "hour")),
+    endTime: new Date(moment().add(2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(3, "hour")),
+    endTime: new Date(moment().add(5, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(),
+    endTime: new Date(moment().add(2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(3, "hour")),
+    endTime: new Date(moment().add(5, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(-3, "hour")),
+    endTime: new Date(moment().add(-2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(1, "hour")),
+    endTime: new Date(moment().add(2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(3, "hour")),
+    endTime: new Date(moment().add(5, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(),
+    endTime: new Date(moment().add(2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(3, "hour")),
+    endTime: new Date(moment().add(5, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(-3, "hour")),
+    endTime: new Date(moment().add(-2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(1, "hour")),
+    endTime: new Date(moment().add(2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(3, "hour")),
+    endTime: new Date(moment().add(5, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(),
+    endTime: new Date(moment().add(2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(3, "hour")),
+    endTime: new Date(moment().add(5, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(-3, "hour")),
+    endTime: new Date(moment().add(-2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(1, "hour")),
+    endTime: new Date(moment().add(2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(3, "hour")),
+    endTime: new Date(moment().add(5, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(),
+    endTime: new Date(moment().add(2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(3, "hour")),
+    endTime: new Date(moment().add(5, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(-3, "hour")),
+    endTime: new Date(moment().add(-2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(1, "hour")),
+    endTime: new Date(moment().add(2, "hour")),
+  },{
+    title: 'The title...',
+    startTime: new Date(moment().add(3, "hour")),
+    endTime: new Date(moment().add(5, "hour")),
+  }];
 
   events.sort((a, b) => a.startTime.getHours() - b.startTime.getHours());
 
@@ -276,7 +274,7 @@ const DayCalendar = ({ day, setDay }) => {
 
       <div className="calendar-body" ref={calendarBody}>
         <ul id="day-time">
-          {
+        {
           [...(Array(24))].map((el, index) => (
             <li key={Math.random()}>
               <DisplayText text={formatHours(index)} />
@@ -289,42 +287,39 @@ const DayCalendar = ({ day, setDay }) => {
 
           {
              events.map((event) => {
-               // if(event.startTime.getHours() === index) {
-               const time = event.startTime.getHours();
-               const minutPush = event.startTime.getMinutes() * (cellWidthDayView / 60);
-               const duration = ((event.endTime.getTime() - event.startTime.getTime())
-               / 60000) * (cellWidthDayView / 60); // duration in px
-               const exist = history.filter((el) => el.time === time
-                                  || (
-                                    (el.time * cellWidthDayView + el.minutPush)
-                                  < (time * cellWidthDayView + minutPush)
-                                  && (time * cellWidthDayView + minutPush)
-                                  < (el.time * cellWidthDayView + el.minutPush + el.duration)));
-
-               history.push({ time, duration, minutPush });
-               return (
-                 <div
-                   className="event"
-                   key={Math.random()}
-                   style={{
-                     left: `${time * cellWidthDayView}px`,
-                     top: `${exist.length * 32}px`,
-                     marginLeft: `${minutPush}px`,
-                     width: `${duration}px`,
-                   }}
-                 >
-                   <DisplayText text={event.title} />
-                 </div>
-               );
-             })
+              // if(event.startTime.getHours() === index) {
+                const time = event.startTime.getHours();
+                const minutPush = event.startTime.getMinutes() * (cellWidthDayView / 60);
+                const duration = ((event.endTime.getTime() - event.startTime.getTime()) / 60000) * (cellWidthDayView / 60); // duration in px
+                const exist = history.filter((el) => 
+                                  el.time === time
+                                  ||
+                                  (
+                                  (el.time * cellWidthDayView + el.minutPush)
+                                  < 
+                                  (time * cellWidthDayView + minutPush)
+                                  &&
+                                  (time * cellWidthDayView + minutPush)
+                                  <
+                                  (el.time * cellWidthDayView + el.minutPush + el.duration))
+                );
+            
+                history.push({time, duration, minutPush});
+                return (
+                  <div className="event" key={Math.random()} style={{
+                    left: `${time * cellWidthDayView}px`,
+                    top: `${exist.length * 32}px`,
+                    marginLeft: `${minutPush}px`,
+                    width: `${duration}px` }}>
+                    <DisplayText text={event.title} />
+                  </div>
+                )
+            })
           }
-          {[...(Array(24 * 18))].map(() => (
-            <li style={{}} key={Math.random()}>
-              {
-
-            }
-
-            </li>
+          {[...(Array(24 * 18))].map((value, index) =>  (
+            <li style={{}} key={Math.random()}>{
+             
+            }</li>
           ))}
         </ul>
       </div>
