@@ -62,21 +62,19 @@
     // text-align: center;
     text-transform: uppercase;
     font-size: 12px;
-    font-weight: 500;
+    // font-weight: 500;
     color: map-get($color-gray, 0);
     padding: 5px 0 0 80px;
     border-left: 1px solid map-get($color-white, 550);
     border-right: 1px solid map-get($color-white, 550);
     border-bottom: 1px dashed #E3E6E7;
-    height: 65px;
+    height: 100px;
   }
   #days span {
-    overflow: hidden;
-    font-family: Verdana, sans-serif;
+    // overflow: hidden;
+    // font-family: Verdana, sans-serif;
     color: map-get($color-black, 900);
-    font-size: 8px;
-    text-overflow: ellipsis;
-    justify-content: space-between;
+  
   }
   #days span ul {
     margin: 0 0 0 -110px;
@@ -87,10 +85,20 @@
     justify-content: space-between;
   }
   #days span ul a {
-    background-color: rgba(44, 124, 241, 0.11);
-    padding: 2px;
+    padding: 1px;
     border-radius: 5px;
-    color: map-get($color-black, 900);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 6px;
+    font-family: Verdana, sans-serif;
+  }
+  span ul a::before {
+    content: "\2022";
+    color: blue;
+    font-weight: bold;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em;
   }
 
   #days li.active {
