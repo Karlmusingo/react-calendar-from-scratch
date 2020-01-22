@@ -1,3 +1,7 @@
+/* eslint-disable react/require-default-props */
+/* eslint-disable no-nested-ternary */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/button-has-type */
 import React, { useState } from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
@@ -8,43 +12,54 @@ import VerticalDayCalendar from './VerticalDayCalendar';
 import '../styles/calendarEvents.scss';
 
 
-const titleText = 'Some title Some title Some title Some title Some title Some... title';
+const titleText = 'working in the weekend';
 
 const eventsDefault = [
   {
     startTime: new Date(),
     endTime: new Date(moment().add(1, 'hour')),
-    title: `${titleText}`
+    title: `${titleText}`,
   },
   {
     startTime: new Date(),
     endTime: new Date(moment().add(1, 'hour')),
-    title: `${titleText}`
+    title: `${titleText}`,
   },
   {
     startTime: new Date(),
     endTime: new Date(moment().add(1, 'hour')),
-    title: `${titleText}`
+    title: `${titleText}`,
   },
   {
     startTime: new Date(moment().add(2, 'hour')),
     endTime: new Date(moment().add(3, 'hour')),
-    title: `${titleText}`
+    title: `${titleText}`,
   },
   {
     startTime: new Date(moment().add(-3, 'hour')),
     endTime: new Date(moment().add(-2, 'hour')),
-    title: `${titleText}`
+    title: `${titleText}`,
   },
   {
     startTime: new Date(),
     endTime: new Date(moment().add(1, 'hour')),
-    title: `${titleText}`
+    title: `${titleText}`,
   },
 ];
 
 const Calendar = ({ events = eventsDefault, dayOrientation = 'horizontal' }) => {
   const [calendarView, setCalendarView] = useState('week');
+
+  // eslint-disable-next-line no-shadow
+  const formatEventTime = (events) => {
+    const newEvents = events.map((event) => ({
+      ...event,
+      title: event.eventTitle,
+      startTime: new Date(event.startTime),
+      endTime: new Date(event.endTime),
+    }));
+    return newEvents;
+  };
 
   const calendarSetting = (view) => {
     setCalendarView(view);
@@ -86,10 +101,10 @@ Calendar.propTypes = {
     PropTypes.shape({
       title: PropTypes.string,
       startTime: PropTypes.instanceOf(Date),
-      endTime: PropTypes.instanceOf(Date)
-    })
+      endTime: PropTypes.instanceOf(Date),
+    }),
   ),
   dayOrientation: PropTypes.oneOf(['horizontal', 'vertical']),
-}
+};
 
 export default Calendar;
