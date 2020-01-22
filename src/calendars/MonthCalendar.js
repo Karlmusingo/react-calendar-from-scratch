@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable array-callback-return */
 import React, { useState } from 'react';
-import { weekdays, months } from './Constants';
+import { weekdays, months } from '../utils/constants';
 import DisplayText from './DisplayText';
 import DisplayEvent from './DisplayEvent';
 import '../styles/MonthCalendar.scss';
