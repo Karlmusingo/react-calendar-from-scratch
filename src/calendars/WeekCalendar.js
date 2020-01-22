@@ -12,7 +12,7 @@ import Event from './Event';
 import DisplayText from './DisplayText';
 import '../styles/WeekCalendars.scss';
 
-
+const d = new Date();
 const WeekCalendar = ({ events = [] }) => {
   const [today, setToday] = useState(new Date());
   const monthDefault = today.getMonth();
@@ -88,7 +88,15 @@ const WeekCalendar = ({ events = [] }) => {
         <li>Time</li>
         {
            weekdays.map((day) => (
-             <li key={Math.random()}>{day}</li>
+             <li key={Math.random()}>
+               {
+                  day && day === d.toDateString().slice(0, 3) ? (
+                    <span className="currentDay">
+                      {day}
+                    </span>
+                  ) : day
+              }
+             </li>
            ))
          }
       </ul>

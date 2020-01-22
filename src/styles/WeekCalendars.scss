@@ -81,6 +81,14 @@
         background: $color-green-light;
         color: map-get($color-white, 000) !important;
     }
+    .currentDay {
+        color: white !important;
+        font-size: 15px !important;
+        border-radius: 50%;
+        background-color: rgb(8, 8, 243);
+        text-align: center;
+        padding:3px;
+      }
 
     .event {
         padding: 5px 10px;
