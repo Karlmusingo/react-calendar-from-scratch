@@ -44,7 +44,7 @@ const eventsDefault = [
 ];
 
 const Calendar = ({ events = eventsDefault, dayOrientation = 'horizontal' }) => {
-  const [calendarView, setCalendarView] = useState('day');
+  const [calendarView, setCalendarView] = useState('week');
 
   const calendarSetting = (view) => {
     setCalendarView(view);

@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import DisplayText from './DisplayText';
 import Event from './Event';
-import { weekdays, months, cellWidthDayView } from './Constants';
+import { weekdays, months, cellWidthDayView } from '../utils/constants';
 import compareDate from '../utils/compareDate';
 import '../styles/dayCalendar.scss';
 
