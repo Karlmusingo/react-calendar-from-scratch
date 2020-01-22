@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-mixed-operators */
@@ -84,13 +85,14 @@ const DayCalendar = ({ events = [], dayOrientation }) => {
   return (
     <div id="day-calendar">
       <div className="calendar-header">
-        <div className="month" style={{ marginLeft: '196px' }}>
+        <div className="month" style={{ marginLeft: '430px' }}>
           <ul>
             <li
               className="navigation"
               onClick={() => prev()}
               role="button"
-            >&#10094;
+            >
+&#10094;
             </li>
             <li>
               <DisplayText text={`${weekdays[day.getDay()]} ${addSuffix(day.getDate())}`} />
@@ -129,18 +131,12 @@ const DayCalendar = ({ events = [], dayOrientation }) => {
                 const minutPush = event.startTime.getMinutes() * (cellWidthDayView / 60);
                 const duration = ((event.endTime.getTime() - event.startTime.getTime())
                 / 60000) * (cellWidthDayView / 60);
-                const exist = history.filter(el =>
-                                 el.time === time
-                                 ||
-                                 (
-                                 (el.time * cellWidthDayView + el.minutPush)
-                                 <
-                                 (time * cellWidthDayView + minutPush)
-                                 &&
-                                 (time * cellWidthDayView + minutPush)
-                                 <
-                                 (el.time * cellWidthDayView + el.minutPush + el.duration)),
-               );
+                const exist = history.filter((el) => el.time === time
+                                 || (
+                                   (el.time * cellWidthDayView + el.minutPush)
+                                 < (time * cellWidthDayView + minutPush)
+                                 && (time * cellWidthDayView + minutPush)
+                                 < (el.time * cellWidthDayView + el.minutPush + el.duration)));
 
                 history.push({ time, duration, minutPush });
                 return (
@@ -159,7 +155,7 @@ const DayCalendar = ({ events = [], dayOrientation }) => {
            }
           {[...(Array(24 * 18))].map((value, index) => (
             <li style={{}} key={Math.random()} />
-           ))}
+          ))}
         </ul>
       </div>
 
@@ -177,4 +173,3 @@ DayCalendar.propTypes = {
 };
 
 export default DayCalendar;
-
