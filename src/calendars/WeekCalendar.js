@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-shadow */
 /* eslint-disable react/require-default-props */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -15,7 +16,9 @@ import '../styles/WeekCalendars.scss';
 
 const today = new Date();
 
-const WeekCalendar = ({ events = [], onWeekChange, day, setDay }) => {
+const WeekCalendar = ({
+  events = [], day, setDay,
+}) => {
   const monthDefault = day.getMonth();
   const yearDefault = day.getFullYear();
   const firstDayOfTheWeekDefault = day.getDate() - day.getDay();
@@ -39,17 +42,12 @@ const WeekCalendar = ({ events = [], onWeekChange, day, setDay }) => {
     return `${months[month]} ${year}`;
   };
 
-  // const numberOfDays = new Date(year, month + 1, 0).getDate();
-
   useEffect(() => {
     setMonth(day.getMonth());
     setYear(day.getFullYear());
     setFirstDayOfTheWeek(day.getDate() - day.getDay());
     setLastDayOfTheWeek(new Date(year, month, firstDayOfTheWeekDefault + 6).getDate());
-    const startOfTheWeek = new Date(year, month, day.getDate() - day.getDay());
-    const endOfTheWeek = new Date(year, month, firstDayOfTheWeekDefault + 6);
-    onWeekChange(startOfTheWeek, endOfTheWeek);
-  }, [day]);
+  }, [today, firstDayOfTheWeekDefault, month, year]);
 
   const next = () => {
     const newDay = new Date(moment(day).add(1, 'week'));
@@ -111,7 +109,7 @@ const WeekCalendar = ({ events = [], onWeekChange, day, setDay }) => {
          }
       </ul>
       <ul id="days">
-        {[...(Array(188))].map((value, index) => (
+        {[...(Array(188))].map((index) => (
           <li>
             {
               index % 8 === 0 ? (
@@ -136,7 +134,7 @@ const WeekCalendar = ({ events = [], onWeekChange, day, setDay }) => {
                        <div>
                          <Event
                            key={Math.random()}
-                           ttitle={event.title}
+                           name={event.title}
                            title={`${event.startTime.getHours()}:${event.startTime.getMinutes()} PM`}
                            style={{
                              marginTop: `${minutPush}px`,

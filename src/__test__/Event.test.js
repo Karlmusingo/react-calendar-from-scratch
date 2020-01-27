@@ -9,4 +9,3 @@ describe('testing event component', () => {
     expect(wrapper).toMatchSnapshot(wrapper);
   });
 });
-

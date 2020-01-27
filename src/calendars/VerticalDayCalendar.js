@@ -1,3 +1,5 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-mixed-operators */
@@ -10,32 +12,28 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import DisplayText from './DisplayText';
 import Event from './Event';
-import { weekdays, months , cellHeightVerticalDayView } from '../utils/constants';
+import { weekdays, months, cellHeightVerticalDayView } from '../utils/constants';
 import compareDate from '../utils/compareDate';
 import '../styles/verticalDayCalendar.scss';
 
 export const addSuffix = (date) => {
-  // eslint-disable-next-line one-var
-  const moduloTen = date % 10,
-    moduloHundred = date % 100;
+  const moduloTen = date % 10;
+  const moduloHundred = date % 100;
   if (moduloTen === 1 && moduloHundred !== 11) {
-    /* istanbul ignore next */
     return `${date}st`;
   }
   if (moduloTen === 2 && moduloHundred !== 12) {
-    /* istanbul ignore next */
     return `${date}nd`;
   }
   if (moduloTen === 3 && moduloHundred !== 13) {
-    /* istanbul ignore next */
     return `${date}rd`;
   }
   return `${date}th`;
 };
 
-/* istanbul ignore next */
-const DayCalendar = ({ events = [], onDayChange, day, setDay }) => {
-
+const DayCalendar = ({
+  events = [], onDayChange, day, setDay,
+}) => {
   const calendarBody = useRef(null);
 
   useEffect(() => {
@@ -97,7 +95,8 @@ const DayCalendar = ({ events = [], onDayChange, day, setDay }) => {
               className="navigation"
               onClick={() => prev()}
               role="button"
-            >&#10094;
+            >
+&#10094;
             </li>
             <li>
               <DisplayText text={`${weekdays[day.getDay()]} ${addSuffix(day.getDate())}`} />
@@ -116,60 +115,48 @@ const DayCalendar = ({ events = [], onDayChange, day, setDay }) => {
         </div>
       </div>
       <div className="calendar-body" ref={calendarBody}>
-        {/* <ul id="day-time">
-          {
-           [...(Array(2))].map((el, index) => (
-             <li key={Math.random()}>
-               <DisplayText text={formatHours(index)} />
-             </li>
-           ))
-          }
-        </ul> */}
-
         <ul id="days">
           {[...(Array(24 * 2))].map((value, index) => {
-            if(index % 2 === 0) return (<li className="hour" key={Math.random()}>
-                <DisplayText text={formatHours(index/2)} />
-              </li>)
-            return (<li className="events-cells" style={{}} key={Math.random()}>
-              {
+            if (index % 2 === 0) {
+              return (
+                <li className="hour" key={Math.random()}>
+                  <DisplayText text={formatHours(index / 2)} />
+                </li>
+              );
+            }
+            return (
+              <li className="events-cells" style={{}} key={Math.random()}>
+                {
                 events.map((event) => {
                   if (!compareDate(event.startTime, day)) return null;
                   event.startTime = new Date(event.startTime);
                   const time = event.startTime.getHours();
-                  if(index !== (time * 2) + 1) return null;
+                  if (index !== (time * 2) + 1) return null;
                   const minutPush = event.startTime.getMinutes() * (cellHeightVerticalDayView / 60);
                   const duration = ((event.endTime.getTime() - event.startTime.getTime())
                         / 60000) * (cellHeightVerticalDayView / 60);
-                  const exist = history.filter(el =>
-                                  el.time === time
-                                  ||
-                                  (
-                                  (el.time * cellHeightVerticalDayView + el.minutPush)
-                                  <
-                                  (time * cellHeightVerticalDayView + minutPush)
-                                  &&
-                                  (time * cellHeightVerticalDayView + minutPush)
-                                  <
-                                  (el.time * cellHeightVerticalDayView + el.minutPush + el.duration)),
-                  );
-
+                  const exist = history.filter((el) => el.time === time
+                                  || (
+                                    (el.time * cellHeightVerticalDayView + el.minutPush)
+                                  < (time * cellHeightVerticalDayView + minutPush)
+                                  && (time * cellHeightVerticalDayView + minutPush)
+                                  < (el.time * cellHeightVerticalDayView
+                                    + el.minutPush + el.duration)));
                   history.push({ time, duration, minutPush });
-                  return  (
+                  return (
                     <Event
                       key={Math.random()}
                       style={{
                         height: `${duration}px`,
-                        // top: `${time * cellHeightVerticalDayView}px`,
                         marginTop: `${minutPush}px`,
-                        // width: `${95 / exist.length}%`,
                       }}
                       title={event.title}
                     />
                   );
                 })
               }
-            </li>)
+              </li>
+            );
           })}
         </ul>
       </div>
@@ -183,10 +170,9 @@ DayCalendar.propTypes = {
     PropTypes.shape({
       title: PropTypes.string,
       startTime: PropTypes.instanceOf(Date),
-      endTime: PropTypes.instanceOf(Date)
-    })
+      endTime: PropTypes.instanceOf(Date),
+    }),
   ),
 };
 
 export default DayCalendar;
-
