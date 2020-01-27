@@ -11,7 +11,7 @@ const today = new Date();
 const monthDefault = today.getMonth();
 const yearDefault = today.getFullYear();
 
-const MonthCalendar = (events) => {
+const MonthCalendar = ({ events, onMonthChange }) => {
   const [month, setMonth] = useState(monthDefault);
   const [year, setyear] = useState(yearDefault);
 
@@ -24,6 +24,7 @@ const MonthCalendar = (events) => {
     const newMonth = (month + 1) % 12;
     setMonth(newMonth);
     setyear(newYear);
+    onMonthChange(newMonth, newYear);
   };
 
   const prev = () => {
@@ -31,6 +32,7 @@ const MonthCalendar = (events) => {
     const newMonth = month === 0 ? 11 : month - 1;
     setMonth(newMonth);
     setyear(newYear);
+    onMonthChange(newMonth, newYear)
   };
 
   return (
@@ -74,24 +76,25 @@ const MonthCalendar = (events) => {
                   ) : day + 1
               }
              &nbsp;
-             <br />
-              {
-                events.events.map((event) => {
-                  if (day + 1 === event.startTime.getDate()
-                    && month === event.startTime.getMonth()) {
-                    return (
-                      <DisplayEvent
-                        className="event-month-calendar"
-                        key={Math.random()}
-                        text={`${event.startTime.getHours()}:${event.startTime.getMinutes()}`}
-                        name={event.title}
-                      />
-                    );
-                  }
-                })
-              }
-            </li>
-          ))
+                <br />
+                {
+                  events.map((event) => {
+                    if (day + 1 === event.startTime.getDate()
+                     && month === event.startTime.getMonth()) {
+                      return (
+                        <DisplayEvent
+                          className="event-month-calendar"
+                          key={Math.random()}
+                          text={`${event.startTime.getHours()}:${event.startTime.getMinutes()}`}
+                          name={event.title}
+                        />
+                      );
+                    }
+                  })
+                }
+              </li>
+            )
+          )
         }
 
       </ul>

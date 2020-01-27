@@ -32,8 +32,8 @@ const eventsDefault = [
   },
 ];
 
-const Calendar = ({ events = eventsDefault, dayOrientation = 'horizontal' }) => {
-  const [calendarView, setCalendarView] = useState('week');
+const Calendar = ({ events = eventsDefault, dayOrientation = 'horizontal', defautlCalendarView = 'week', onDayChange, onWeekChange, onMonthChange }) => {
+  const [calendarView, setCalendarView] = useState(defautlCalendarView);
 
   // eslint-disable-next-line no-shadow
   const formatEventTime = (events) => {
@@ -73,10 +73,10 @@ const Calendar = ({ events = eventsDefault, dayOrientation = 'horizontal' }) => 
         </button>
       </div>
       {calendarView === 'day' ? (
-        dayOrientation === 'horizontal' ? <DayCalendar events={events} /> : <VerticalDayCalendar events={events} />
+        dayOrientation === 'horizontal' ? <DayCalendar events={events} onDayChange={onDayChange} /> : <VerticalDayCalendar events={events} onDayChange={onDayChange} />
       ) : null}
-      {calendarView === 'week' ? <WeekCalendar events={events} /> : null}
-      {calendarView === 'month' ? <MonthCalendar events={events} /> : null}
+      {calendarView === 'week' ? <WeekCalendar events={events} onWeekChange={onWeekChange} /> : null}
+      {calendarView === 'month' ? <MonthCalendar events={events} onMonthChange={onMonthChange} /> : null}
     </div>
   );
 };

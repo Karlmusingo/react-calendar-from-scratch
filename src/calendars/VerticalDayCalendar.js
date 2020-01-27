@@ -36,7 +36,7 @@ export const addSuffix = (date) => {
 };
 
 /* istanbul ignore next */
-const DayCalendar = ({ events = [] }) => {
+const DayCalendar = ({ events = [], onDayChange }) => {
   const [day, setDay] = useState(today);
 
   const calendarBody = useRef(null);
@@ -66,21 +66,25 @@ const DayCalendar = ({ events = [] }) => {
   const next = () => {
     const newDay = new Date(moment(day).add(1, 'day'));
     setDay(newDay);
+    onDayChange(day, newDay);
   };
 
   const prev = () => {
     const newDay = new Date(moment(day).add(-1, 'week'));
     setDay(newDay);
+    onDayChange(day, newDay);
   };
 
   const nextMonth = () => {
     const newDay = new Date(moment(day).add(1, 'month'));
     setDay(newDay);
+    onDayChange(day, newDay);
   };
 
   const prevMonth = () => {
     const newDay = new Date(moment(day).add(-1, 'month'));
     setDay(newDay);
+    onDayChange(day, newDay);
   };
 
   events.sort((a, b) => a.startTime.getHours() - b.startTime.getHours());

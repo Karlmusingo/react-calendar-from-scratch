@@ -13,11 +13,11 @@ import DisplayText from './DisplayText';
 import '../styles/WeekCalendars.scss';
 
 const d = new Date();
-const WeekCalendar = ({ events = [] }) => {
-  const [today, setToday] = useState(new Date());
-  const monthDefault = today.getMonth();
-  const yearDefault = today.getFullYear();
-  const firstDayOfTheWeekDefault = today.getDate() - today.getDay();
+const WeekCalendar = ({ events = [], onWeekChange }) => {
+  const [day, setDay] = useState(new Date());
+  const monthDefault = day.getMonth();
+  const yearDefault = day.getFullYear();
+  const firstDayOfTheWeekDefault = day.getDate() - day.getDay();
 
   const [month, setMonth] = useState(monthDefault);
   const [year, setYear] = useState(yearDefault);
@@ -26,7 +26,7 @@ const WeekCalendar = ({ events = [] }) => {
     firstDayOfTheWeekDefault + 6).getDate());
 
   const dispalyMonth = () => {
-    const startOfTheWeek = new Date(year, month, today.getDate() - today.getDay());
+    const startOfTheWeek = new Date(year, month, day.getDate() - day.getDay());
     const endOfTheWeek = new Date(year, month, firstDayOfTheWeekDefault + 6);
     if (startOfTheWeek.getMonth() !== endOfTheWeek.getMonth()) {
       if (startOfTheWeek.getFullYear() !== endOfTheWeek.getFullYear()) {
@@ -41,26 +41,33 @@ const WeekCalendar = ({ events = [] }) => {
   // const numberOfDays = new Date(year, month + 1, 0).getDate();
 
   useEffect(() => {
-    setMonth(today.getMonth());
-    setYear(today.getFullYear());
-    setFirstDayOfTheWeek(today.getDate() - today.getDay());
+    setMonth(day.getMonth());
+    setYear(day.getFullYear());
+    setFirstDayOfTheWeek(day.getDate() - day.getDay());
     setLastDayOfTheWeek(new Date(year, month, firstDayOfTheWeekDefault + 6).getDate());
-  }, [today]);
+    const startOfTheWeek = new Date(year, month, day.getDate() - day.getDay());
+    const endOfTheWeek = new Date(year, month, firstDayOfTheWeekDefault + 6);
+    onWeekChange(startOfTheWeek, endOfTheWeek);
+  }, [day]);
 
   const next = () => {
-    setToday(new Date(moment(today).add(1, 'week')));
+    const newDay = new Date(moment(day).add(1, 'week'));
+    setDay(newDay);
   };
 
   const prev = () => {
-    setToday(new Date(moment(today).add(-1, 'week')));
+    const newDay = new Date(moment(day).add(-1, 'week'));
+    setDay(newDay);
   };
 
   const nextMonth = () => {
-    setToday(new Date(moment(today).add(1, 'month')));
+    const newDay = new Date(moment(day).add(1, 'month'));
+    setDay(newDay);
   };
 
   const prevMonth = () => {
-    setToday(new Date(moment(today).add(-1, 'month')));
+    const newDay = new Date(moment(day).add(-1, 'month'));
+    setDay(newDay);
   };
   return (
     <div id="week-calendar">

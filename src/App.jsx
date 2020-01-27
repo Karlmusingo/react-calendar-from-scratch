@@ -11,9 +11,13 @@ const App = () => {
     setCalendarView(view);
   };
 
+  const anyFunction = (data = 'thise are fake default data') => {
+    console.log('this a function, a callback for the calendar next', data);
+  }
+
   return (
     <div style={{ marginTop: '50px', position: 'relative' }}>
-      <Calendar />
+      <Calendar onDayChange={(data) => anyFunction(data)} onWeekChange={(data) => anyFunction(data)} onMonthChange={(data) => anyFunction(data)} />
       {/* <div className="calendar-view-setting">
         <button
           className={calendarView === 'day' ? 'active' : ''}
