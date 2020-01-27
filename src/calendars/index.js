@@ -16,21 +16,6 @@ const titleText = 'working in the weekend';
 
 const eventsDefault = [
   {
-    startTime: new Date(),
-    endTime: new Date(moment().add(1, 'hour')),
-    title: `${titleText}`,
-  },
-  {
-    startTime: new Date(),
-    endTime: new Date(moment().add(1, 'hour')),
-    title: `${titleText}`,
-  },
-  {
-    startTime: new Date(),
-    endTime: new Date(moment().add(1, 'hour')),
-    title: `${titleText}`,
-  },
-  {
     startTime: new Date(moment().add(2, 'hour')),
     endTime: new Date(moment().add(3, 'hour')),
     title: `${titleText}`,

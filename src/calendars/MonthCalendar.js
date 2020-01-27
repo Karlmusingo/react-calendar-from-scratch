@@ -60,7 +60,13 @@ const MonthCalendar = (events) => {
           [...(Array(skipDays)).fill('*'), ...Array(numberOfDays).keys()].map((day) => (
             day === '*' ? <li key={Math.random()}>{ }</li> : (
               <li key={Math.random()}>
-                {day + 1}
+                {
+                  day + 1 && day + 1 === today.getDate() ? (
+                    <span className="currentDay">
+                      {day + 1}
+                    </span>
+                  ) : day + 1
+              }
              &nbsp;
                 <br />
                 {
