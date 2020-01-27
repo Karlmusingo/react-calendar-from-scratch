@@ -15,8 +15,6 @@ import { weekdays, months, cellWidthDayView } from '../utils/constants';
 import compareDate from '../utils/compareDate';
 import '../styles/dayCalendar.scss';
 
-const today = new Date();
-
 export const addSuffix = (date) => {
   // eslint-disable-next-line one-var
   const moduloTen = date % 10,
@@ -37,13 +35,12 @@ export const addSuffix = (date) => {
 };
 
 /* istanbul ignore next */
-const DayCalendar = ({ events = [], onDayChange }) => {
-  const [day, setDay] = useState(today);
+const DayCalendar = ({ events = [], onDayChange, day, setDay }) => {
 
   const calendarBody = useRef(null);
 
   useEffect(() => {
-    startOn(today.getHours());
+    startOn(day.getHours());
   }, [day]);
 
   const formatHours = (hour) => {
@@ -91,13 +88,7 @@ const DayCalendar = ({ events = [], onDayChange }) => {
       <div className="calendar-header">
         <div className="month" style={{ marginLeft: '430px' }}>
           <ul>
-            <li
-              className="navigation"
-              onClick={() => prev()}
-              role="button"
-            >
-&#10094;
-            </li>
+            <li className="navigation" onClick={() => prev()} role="button">&#10094;</li>
             <li>
               <DisplayText text={`${weekdays[day.getDay()]} ${addSuffix(day.getDate())}`} />
             </li>
