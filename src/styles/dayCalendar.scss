@@ -4,6 +4,7 @@
 #day-calendar {
     background: map-get($color-white, 000);
     margin-left: 50px;
+    // height: 700px;
 
     li {
         list-style-type: none;
@@ -56,6 +57,7 @@
     .calendar-body {
         width: 100%;
         overflow-x: scroll;
+        height: 650px !important;
     }
     .calendar-body::-webkit-scrollbar {
         height: 7px;
@@ -96,7 +98,7 @@
         font-size: 12px;
         font-weight: 500;
         color: map-get($color-white, 600);
-        height: 19px;
+        height: 32px;
         border-left: 1px solid map-get($color-white, 550);
         border-bottom: 1px dashed map-get($color-white, 550);
         
