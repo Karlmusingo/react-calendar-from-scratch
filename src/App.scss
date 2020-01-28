@@ -20,6 +20,11 @@ body {
     color: #2C7CF1 !important;
     cursor: pointer;
 }
+.navigation:hover{
+  color: red !important;
+  transform: scale(2.5) !important;
+  transition: width 2s !important;
+}
 
 .calendar-view-setting {
     display: flex;

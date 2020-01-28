@@ -12,6 +12,9 @@
         color: $color-primary !important;
         cursor: pointer;
     }
+    .navigation:hover {
+       color: red !important;
+    }
     .calendar-header {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -46,7 +49,6 @@
     .month ul li {
         color: map-get($color-black, 700);
         font-size: 14px;
-        // letter-spacing: 3px;
         font-family: Verdana, sans-serif;
         line-height: 17px;
         text-align: center;
@@ -80,7 +82,6 @@
         font-size: 12px;
         font-weight: 500;
         line-height: 15px;
-        // letter-spacing: 2px;
         padding: 8px 0 16px 8px;
         border-left: 1px solid map-get($color-white, 550);
         overflow: auto;
