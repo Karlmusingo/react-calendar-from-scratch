@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable react/require-default-props */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
@@ -13,6 +14,7 @@ import DisplayText from './DisplayText';
 import '../styles/WeekCalendars.scss';
 
 const d = new Date();
+const today = d.getDate();
 const WeekCalendar = ({ events = [], onWeekChange }) => {
   const [day, setDay] = useState(new Date());
   const monthDefault = day.getMonth();
@@ -69,6 +71,7 @@ const WeekCalendar = ({ events = [], onWeekChange }) => {
     const newDay = new Date(moment(day).add(-1, 'month'));
     setDay(newDay);
   };
+  const currentMonth = months[month].slice(0, 3);
   return (
     <div id="week-calendar">
       <div className="calendar-header">
@@ -96,13 +99,13 @@ const WeekCalendar = ({ events = [], onWeekChange }) => {
         {
            weekdays.map((day, index) => (
              <li key={Math.random()}>
-               {
-                  (
-                    <span className={day && day === d.toDateString().slice(0, 3) ? "currentDay" : " "}>
-                      {`${day} ${new Date(year, month, firstDayOfTheWeek + index).getDate()}`}
-                    </span>
-                  ) 
-              }
+               <span
+                 className={day && day === d.toDateString().slice(0, 3)
+                   && currentMonth === d.toDateString().slice(4, 7) && today === d.getDate()
+                    && yearDefault === d.getFullYear() ? 'currentDay' : ' '}
+               >
+                 {`${d.toDateString().slice(0, 3)} ${new Date(year, month, firstDayOfTheWeek + index).getDate()}`}
+               </span>
              </li>
            ))
          }
@@ -133,7 +136,7 @@ const WeekCalendar = ({ events = [], onWeekChange }) => {
                        <div>
                          <Event
                            key={Math.random()}
-                          //  ttitle={event.title}
+                           ttitle={event.title}
                            title={`${event.startTime.getHours()}:${event.startTime.getMinutes()} PM`}
                            style={{
                              marginTop: `${minutPush}px`,
