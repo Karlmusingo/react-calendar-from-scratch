@@ -39,7 +39,8 @@
   }
   #weekdays li {
     color: map-get($color-gray, 0);
-    padding: 8px 0 16px 75px;
+    padding: 8px 0 16px 0px;
+    text-align: center;
     font-size: 12px;
     text-transform: uppercase;
     border-left: 1px solid map-get($color-white, 550);

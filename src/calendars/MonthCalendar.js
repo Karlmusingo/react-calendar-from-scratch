@@ -2,38 +2,37 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable array-callback-return */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 import { weekdays, months } from '../utils/constants';
 import DisplayText from './DisplayText';
 import DisplayEvent from './DisplayEvent';
 import '../styles/MonthCalendar.scss';
 
 const today = new Date();
-const monthDefault = today.getMonth();
-const yearDefault = today.getFullYear();
 
-const MonthCalendar = ({ events, onMonthChange }) => {
-  const [month, setMonth] = useState(monthDefault);
-  const [year, setyear] = useState(yearDefault);
+const MonthCalendar = ({ events, onMonthChange, day, setDay }) => {
+  const [month, setMonth] = useState(day.getMonth());
+  const [year, setYear] = useState(day.getFullYear());
 
   const numberOfDays = new Date(year, month + 1, 0).getDate();
   const numberOfDaysPreviousMonth = new Date(year, month, 0).getDate();
   const skipDays = new Date(year, month).getDay();
 
+  useEffect(() => {
+    setMonth(day.getMonth());
+    setYear(day.getFullYear());
+    onMonthChange(month, year);
+  }, [day])
+
   const next = () => {
-    const newYear = month === 11 ? year + 1 : year;
-    const newMonth = (month + 1) % 12;
-    setMonth(newMonth);
-    setyear(newYear);
-    onMonthChange(newMonth, newYear);
+    const newDay = new Date(moment(day).add(1, 'month'));
+    setDay(newDay)
   };
 
   const prev = () => {
-    const newYear = month === 0 ? year - 1 : year;
-    const newMonth = month === 0 ? 11 : month - 1;
-    setMonth(newMonth);
-    setyear(newYear);
-    onMonthChange(newMonth, newYear);
+    const newDay = new Date(moment(day).add(-1, 'month'));
+    setDay(newDay)
   };
 
   return (
@@ -77,7 +76,7 @@ const MonthCalendar = ({ events, onMonthChange }) => {
                 <li className={index > (numberOfDays + skipDays - 1) ? 'empty-cells' : ' '} key={Math.random()}>
                   {
                   day + 1 && day + 1 === today.getDate() && today.getMonth() === month
-                  && yearDefault === year ? (
+                  && today.getFullYear() === year ? (
                     <span className="currentDay">
                       {day + 1}
                     </span>

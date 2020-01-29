@@ -13,10 +13,9 @@ import Event from './Event';
 import DisplayText from './DisplayText';
 import '../styles/WeekCalendars.scss';
 
-const d = new Date();
-const today = d.getDate();
-const WeekCalendar = ({ events = [], onWeekChange }) => {
-  const [day, setDay] = useState(new Date());
+const today = new Date();
+
+const WeekCalendar = ({ events = [], onWeekChange, day, setDay }) => {
   const monthDefault = day.getMonth();
   const yearDefault = day.getFullYear();
   const firstDayOfTheWeekDefault = day.getDate() - day.getDay();
@@ -71,7 +70,7 @@ const WeekCalendar = ({ events = [], onWeekChange }) => {
     const newDay = new Date(moment(day).add(-1, 'month'));
     setDay(newDay);
   };
-  const currentMonth = months[month].slice(0, 3);
+
   return (
     <div id="week-calendar">
       <div className="calendar-header">
@@ -79,7 +78,7 @@ const WeekCalendar = ({ events = [], onWeekChange }) => {
           <ul>
             <li className="navigation" onClick={() => prev()}>&#10094;</li>
             <li>
-              <DisplayText text={`Sun ${firstDayOfTheWeek} - Sat ${lastDayOfTheWeek}`} />
+              <DisplayText text={`Sun ${new Date(year, month, firstDayOfTheWeek).getDate()} - Sat ${lastDayOfTheWeek}`} />
             </li>
             <li className="navigation" onClick={() => next()}>&#10095;</li>
           </ul>
@@ -97,14 +96,15 @@ const WeekCalendar = ({ events = [], onWeekChange }) => {
       <ul id="weekdays">
         <li>Time</li>
         {
-           weekdays.map((day, index) => (
+           weekdays.map((weekday, index) => (
              <li key={Math.random()}>
                <span
-                 className={day && day === d.toDateString().slice(0, 3)
-                   && currentMonth === d.toDateString().slice(4, 7) && today === d.getDate()
-                    && yearDefault === d.getFullYear() ? 'currentDay' : ' '}
+                 className={weekday && weekday === today.toDateString().slice(0, 3)
+                  && day.getDate() === today.getDate()
+                   && month === today.getMonth()
+                    && year === today.getFullYear() ? 'currentDay' : ' '}
                >
-                 {`${d.toDateString().slice(0, 3)} ${new Date(year, month, firstDayOfTheWeek + index).getDate()}`}
+                 {`${weekday} ${new Date(year, month, firstDayOfTheWeek + index).getDate()}`}
                </span>
              </li>
            ))

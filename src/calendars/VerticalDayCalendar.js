@@ -14,8 +14,6 @@ import { weekdays, months , cellHeightVerticalDayView } from '../utils/constants
 import compareDate from '../utils/compareDate';
 import '../styles/verticalDayCalendar.scss';
 
-const today = new Date();
-
 export const addSuffix = (date) => {
   // eslint-disable-next-line one-var
   const moduloTen = date % 10,
@@ -36,8 +34,7 @@ export const addSuffix = (date) => {
 };
 
 /* istanbul ignore next */
-const DayCalendar = ({ events = [], onDayChange }) => {
-  const [day, setDay] = useState(today);
+const DayCalendar = ({ events = [], onDayChange, day, setDay }) => {
 
   const calendarBody = useRef(null);
 
@@ -47,7 +44,7 @@ const DayCalendar = ({ events = [], onDayChange }) => {
     for (i = 0; i < allEvents.length; i++) {
       allEvents[i].style.width = `${98 / allEvents.length}%`;
     }
-    startOn(today.getHours());
+    startOn(day.getHours());
   }, [day]);
 
 
