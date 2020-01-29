@@ -1,12 +1,11 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-mixed-operators */
-/* eslint-disable no-use-before-define */
 /* eslint-disable react/require-default-props */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState, useRef, useEffect } from 'react';
+/* eslint-disable no-use-before-define */
+/* eslint-disable one-var */
+/* eslint-disable react/prop-types */
+import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import DisplayText from './DisplayText';
@@ -16,27 +15,23 @@ import compareDate from '../utils/compareDate';
 import '../styles/dayCalendar.scss';
 
 export const addSuffix = (date) => {
-  // eslint-disable-next-line one-var
   const moduloTen = date % 10,
     moduloHundred = date % 100;
   if (moduloTen === 1 && moduloHundred !== 11) {
-    /* istanbul ignore next */
     return `${date}st`;
   }
   if (moduloTen === 2 && moduloHundred !== 12) {
-    /* istanbul ignore next */
     return `${date}nd`;
   }
   if (moduloTen === 3 && moduloHundred !== 13) {
-    /* istanbul ignore next */
     return `${date}rd`;
   }
   return `${date}th`;
 };
 
-/* istanbul ignore next */
-const DayCalendar = ({ events = [], onDayChange, day, setDay }) => {
-
+const DayCalendar = ({
+  events = [], onDayChange, day, setDay,
+}) => {
   const calendarBody = useRef(null);
 
   useEffect(() => {
@@ -143,12 +138,12 @@ const DayCalendar = ({ events = [], onDayChange, day, setDay }) => {
                       marginLeft: `${minutPush}px`,
                       width: `${duration}px`,
                     }}
-                    title={event.title}
+                    ttitle={event.title}
                   />
                 );
               })
            }
-          {[...(Array(24 * 18))].map((value, index) => (
+          {[...(Array(24 * 18))].map(() => (
             <li style={{}} key={Math.random()} />
           ))}
         </ul>

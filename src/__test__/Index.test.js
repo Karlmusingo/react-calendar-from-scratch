@@ -13,11 +13,10 @@ jest
 
 describe('render index meeting component', () => {
   const wrapper = shallow(
-      <UseQ />
+    <UseQ />,
   );
 
   it('SHOULD TEST THE COMPONENT', () => {
     expect(wrapper).toMatchSnapshot();
   });
 });
-

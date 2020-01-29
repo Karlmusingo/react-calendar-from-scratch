@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/require-default-props */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-unused-vars */
@@ -32,7 +33,10 @@ const eventsDefault = [
   },
 ];
 
-const Calendar = ({ events = eventsDefault, dayOrientation = 'horizontal', defautlCalendarView = 'week', defaultDate = new Date(), onDayChange, onWeekChange, onMonthChange }) => {
+const Calendar = ({
+  events = eventsDefault, dayOrientation = 'horizontal', defautlCalendarView = 'week',
+  defaultDate = new Date(), onDayChange, onWeekChange, onMonthChange,
+}) => {
   const [calendarView, setCalendarView] = useState(defautlCalendarView);
   const [day, setDay] = useState(defaultDate);
 

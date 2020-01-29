@@ -11,7 +11,9 @@ import '../styles/MonthCalendar.scss';
 
 const today = new Date();
 
-const MonthCalendar = ({ events, onMonthChange, day, setDay }) => {
+const MonthCalendar = ({
+  events, onMonthChange, day, setDay,
+}) => {
   const [month, setMonth] = useState(day.getMonth());
   const [year, setYear] = useState(day.getFullYear());
 
@@ -23,16 +25,16 @@ const MonthCalendar = ({ events, onMonthChange, day, setDay }) => {
     setMonth(day.getMonth());
     setYear(day.getFullYear());
     onMonthChange(month, year);
-  }, [day])
+  }, [day]);
 
   const next = () => {
     const newDay = new Date(moment(day).add(1, 'month'));
-    setDay(newDay)
+    setDay(newDay);
   };
 
   const prev = () => {
     const newDay = new Date(moment(day).add(-1, 'month'));
-    setDay(newDay)
+    setDay(newDay);
   };
 
   return (
@@ -51,8 +53,11 @@ const MonthCalendar = ({ events, onMonthChange, day, setDay }) => {
 
       <ul id="weekdays">
         {
+           // eslint-disable-next-line no-shadow
            weekdays.map((day) => (
-             <li key={Math.random()}>{day}</li>
+             <li key={Math.random()}>
+               {day}
+             </li>
            ))
          }
       </ul>
@@ -63,13 +68,12 @@ const MonthCalendar = ({ events, onMonthChange, day, setDay }) => {
             ...(Array(skipDays)).fill('*'),
             ...Array(numberOfDays).keys(),
             ...Array(42 - (skipDays + numberOfDays)).keys(),
+          // eslint-disable-next-line no-shadow
           ].map((day, index) => (
             day === '*'
               ? (
                 <li className="empty-cells" key={Math.random()}>
-                  {' '}
                   { numberOfDaysPreviousMonth - (skipDays - 1) + index }
-                  {' '}
                 </li>
               )
               : (
