@@ -11,7 +11,7 @@ const Event = ({ ttitle, title, style }) => (
 
 Event.propTypes = {
   ttitle: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   style: PropTypes.object.isRequired,
 };
 

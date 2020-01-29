@@ -11,8 +11,8 @@ const DisplayText = ({ text, name, style = {} }) => (
 );
 
 DisplayText.propTypes = {
-  text: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  text: PropTypes.string,
+  name: PropTypes.string,
   style: PropTypes.object,
 };
 

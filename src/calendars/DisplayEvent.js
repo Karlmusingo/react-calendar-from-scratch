@@ -24,8 +24,8 @@ const DisplayEvent = ({
 DisplayEvent.propTypes = {
   text: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  ttitle: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  ttitle: PropTypes.string,
+  title: PropTypes.string,
   style: PropTypes.object,
 };
 
