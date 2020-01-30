@@ -95,6 +95,15 @@ Calendar.propTypes = {
     }),
   ),
   dayOrientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  onDayChange: PropTypes.func,
+  onWeekChange: PropTypes.func,
+  onMonthChange: PropTypes.func,
 };
+
+Calendar.defaultProps = {
+  onDayChange: () => null,
+  onWeekChange: () => null,
+  onMonthChange: () => null,
+}
 
 export default Calendar;
