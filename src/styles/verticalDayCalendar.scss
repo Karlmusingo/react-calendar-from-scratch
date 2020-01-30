@@ -3,7 +3,7 @@
 
 #vertical-day-calendar {
     background: map-get($color-white, 000);
-    margin-left: 50px;
+    min-width: $min-width;
 
     li {
         list-style-type: none;

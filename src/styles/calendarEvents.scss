@@ -8,7 +8,6 @@ li {
 .calendar-view-setting {
   display: flex;
   position: absolute;
-  margin-left: 50px;
   padding: 7px;
   button {
     height: 42px;
@@ -25,6 +24,8 @@ li {
     font-weight: 500;
     color: #838D93;
     border: 1px solid #F0F1F1;
+    cursor: pointer;
+    // letter-spacing: 2px;
     line-height: 15px;
   }
 

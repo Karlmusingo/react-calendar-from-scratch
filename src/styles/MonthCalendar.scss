@@ -2,7 +2,8 @@
 
 #month-calendar {
   background: map-get($color-white, 000);
-  margin-left: 50px;
+  min-width: $min-width;
+
   .calendar-header {
     display: flex;
     justify-content: center;
@@ -62,12 +63,12 @@
 
   #days li {
     list-style-type: none;
-    // text-align: center;
+    text-align: center;
     text-transform: uppercase;
     font-size: 12px;
     // font-weight: 500;
     color: map-get($color-gray, 0);
-    padding: 5px 0 0 80px;
+    padding: 5px 0 0 0px;
     border-left: 1px solid map-get($color-white, 550);
     border-right: 1px solid map-get($color-white, 550);
     border-bottom: 1px dashed #E3E6E7;
@@ -88,7 +89,7 @@
   
   }
   #days span ul {
-    margin: 0 0 0 -110px;
+    margin: 0 0 0 -32px;
     position: sticky;
     display: block;
     overflow: hidden;

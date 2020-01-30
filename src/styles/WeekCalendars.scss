@@ -2,7 +2,8 @@
 
 #week-calendar {
     background: map-get($color-white, 000);
-    margin-left: 50px;
+    min-width: $min-width;
+    // height: 700px;
     .calendar-header {
         display: grid;
         grid-template-columns: 1fr 1fr;

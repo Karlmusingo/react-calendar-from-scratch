@@ -3,7 +3,8 @@
 
 #day-calendar {
     background: map-get($color-white, 000);
-    margin-left: 50px;
+    min-width: $min-width;
+    // height: 700px;
 
     li {
         list-style-type: none;

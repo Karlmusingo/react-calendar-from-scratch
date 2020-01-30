@@ -56,7 +56,7 @@ const Calendar = ({
   };
 
   return (
-    <div style={{ marginTop: '50px', position: 'relative' }}>
+    <div style={{ position: 'relative' }}>
       <div className="calendar-view-setting">
         <button
           className={calendarView === 'day' ? 'active' : ''}
