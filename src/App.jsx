@@ -9,9 +9,9 @@ const App = () => {
   return (
     <div style={{ marginTop: '50px', position: 'relative' }}>
       <Calendar
-        onDayChange={(data) => anyFunction(data)}
-        onWeekChange={(data) => anyFunction(data)}
-        onMonthChange={(data) => anyFunction(data)}
+        // onDayChange={(data) => anyFunction(data)}
+        // onWeekChange={(data) => anyFunction(data)}
+        // onMonthChange={(data) => anyFunction(data)}
       />
     </div>
   );
