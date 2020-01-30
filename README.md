@@ -25,12 +25,15 @@ yarn add react-full-event-calendar
 
 ## Day Calendar
 <!-- Day calendar screenshot -->
+<img width="1317" alt="Screen Shot 2020-01-30 at 13 57 35" src="https://user-images.githubusercontent.com/35597858/73448180-f2f4a300-4368-11ea-9cd6-ab3b7b65f6cd.png">
 
 ## Week Calendar
 <!-- Week calendar screenshot -->
+<img width="1309" alt="Screen Shot 2020-01-30 at 13 57 56" src="https://user-images.githubusercontent.com/35597858/73448171-f0924900-4368-11ea-9524-1b9c3f61a63a.png">
 
 ## Month Calendar
 <!-- Month calendar screenshot -->
+<img width="1303" alt="Screen Shot 2020-01-30 at 13 58 06" src="https://user-images.githubusercontent.com/35597858/73448189-f4be6680-4368-11ea-8280-1a74e57d6b4c.png">
 
 ## Usage
 ```sh
