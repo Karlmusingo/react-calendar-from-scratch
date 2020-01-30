@@ -17,7 +17,7 @@ import '../styles/WeekCalendars.scss';
 const today = new Date();
 
 const WeekCalendar = ({
-  events = [], day, setDay,
+  events = [], onWeekChange, day, setDay,
 }) => {
   const monthDefault = day.getMonth();
   const yearDefault = day.getFullYear();
@@ -42,12 +42,17 @@ const WeekCalendar = ({
     return `${months[month]} ${year}`;
   };
 
+  // const numberOfDays = new Date(year, month + 1, 0).getDate();
+
   useEffect(() => {
     setMonth(day.getMonth());
     setYear(day.getFullYear());
     setFirstDayOfTheWeek(day.getDate() - day.getDay());
     setLastDayOfTheWeek(new Date(year, month, firstDayOfTheWeekDefault + 6).getDate());
-  }, [today, firstDayOfTheWeekDefault, month, year]);
+    const startOfTheWeek = new Date(year, month, day.getDate() - day.getDay());
+    const endOfTheWeek = new Date(year, month, firstDayOfTheWeekDefault + 6);
+    onWeekChange(startOfTheWeek, endOfTheWeek);
+  }, [day, firstDayOfTheWeekDefault, month, onWeekChange, year]);
 
   const next = () => {
     const newDay = new Date(moment(day).add(1, 'week'));
@@ -109,7 +114,7 @@ const WeekCalendar = ({
          }
       </ul>
       <ul id="days">
-        {[...(Array(188))].map((index) => (
+        {[...(Array(188))].map((value, index) => (
           <li>
             {
               index % 8 === 0 ? (
@@ -134,7 +139,7 @@ const WeekCalendar = ({
                        <div>
                          <Event
                            key={Math.random()}
-                           name={event.title}
+                           ttitle={event.title}
                            title={`${event.startTime.getHours()}:${event.startTime.getMinutes()} PM`}
                            style={{
                              marginTop: `${minutPush}px`,

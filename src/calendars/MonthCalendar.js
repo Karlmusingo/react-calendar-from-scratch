@@ -25,7 +25,7 @@ const MonthCalendar = ({
     setMonth(day.getMonth());
     setYear(day.getFullYear());
     onMonthChange(month, year);
-  }, [day]);
+  }, [day, onMonthChange, month, year]);
 
   const next = () => {
     const newDay = new Date(moment(day).add(1, 'month'));
