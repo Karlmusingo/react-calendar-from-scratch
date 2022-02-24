@@ -1,5 +1,7 @@
 # REACT EVENT CALENDAR FROM SCRATCH
 
+This package has been deprecated, use https://www.npmjs.com/package/react-full-event-calendar instead
+
 An event calendar like the google's calendar with generic style.
 
 
